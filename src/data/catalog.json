@@ -237,15 +237,20 @@
       "Mystery"
     ],
     "synopsis": "On a storm-soaked coastline, an estranged journalist returns home to unravel the secret that divided her family.",
-    "poster": "/artwork/last-monsoon-poster.svg",
-    "backdrop": "/artwork/last-monsoon-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "trending",
       "discovery"
     ],
     "rating": 9.1,
-    "badge": "NEW ORIGINAL"
+    "badge": "NEW ORIGINAL",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Mountain ridgeline disappearing into rain clouds"
   },
   {
     "id": "bf-002",
@@ -262,15 +267,20 @@
       "Thriller"
     ],
     "synopsis": "A remote research crew receives a message from a station that has been silent for thirty years.",
-    "poster": "/artwork/afterlight-poster.svg",
-    "backdrop": "/artwork/afterlight-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "trending",
       "discovery"
     ],
     "rating": 8.7,
-    "badge": "GLOBAL PREMIERE"
+    "badge": "GLOBAL PREMIERE",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1531366936337-7c912a4589a7",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Aurora borealis above a winter valley"
   },
   {
     "id": "bf-003",
@@ -287,14 +297,19 @@
       "Mystery"
     ],
     "synopsis": "A young detective follows a trail of anonymous recordings through a sleepless city.",
-    "poster": "/artwork/city-of-echoes-poster.svg",
-    "backdrop": "/artwork/city-of-echoes-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "trending"
     ],
     "rating": 8.9,
-    "badge": "NEW SERIES"
+    "badge": "NEW SERIES",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Earth at night photographed from orbit"
   },
   {
     "id": "bf-004",
@@ -311,14 +326,19 @@
       "Drama"
     ],
     "synopsis": "Two strangers miss the last train and discover a city that only exists after dusk.",
-    "poster": "/artwork/blue-hour-poster.svg",
-    "backdrop": "/artwork/blue-hour-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "discovery"
     ],
     "rating": 8.2,
-    "badge": "FESTIVAL SELECT"
+    "badge": "FESTIVAL SELECT",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1511497584788-876760111969",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Pine forest at dusk with low sunlight"
   },
   {
     "id": "bf-005",
@@ -335,15 +355,20 @@
       "Sci-Fi"
     ],
     "synopsis": "A cartographer finds coordinates to a place erased from every satellite map.",
-    "poster": "/artwork/atlas-poster.svg",
-    "backdrop": "/artwork/atlas-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "trending",
       "discovery"
     ],
     "rating": 8.8,
-    "badge": "COMING NEXT"
+    "badge": "COMING NEXT",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Milky Way over snowy mountain peaks"
   },
   {
     "id": "bf-006",
@@ -360,14 +385,19 @@
       "Drama"
     ],
     "synopsis": "A daughter and father rebuild their connection one handmade kite at a time.",
-    "poster": "/artwork/paper-moons-poster.svg",
-    "backdrop": "/artwork/paper-moons-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "discovery"
     ],
     "rating": 8.4,
-    "badge": "CRITIC PICK"
+    "badge": "CRITIC PICK",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Group of friends together near coastal water"
   },
   {
     "id": "bf-007",
@@ -384,15 +414,20 @@
       "Drama"
     ],
     "synopsis": "An architect begins remembering lives she never lived, each unfolding in a different city.",
-    "poster": "/artwork/parallel-poster.svg",
-    "backdrop": "/artwork/parallel-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "trending",
       "discovery"
     ],
     "rating": 8.6,
-    "badge": "BINGE WORTHY"
+    "badge": "BINGE WORTHY",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Yosemite valley and mountain landscape at dusk"
   },
   {
     "id": "bf-008",
@@ -409,14 +444,19 @@
       "Thriller"
     ],
     "synopsis": "A getaway driver takes one final job, only to find the entire city is part of the chase.",
-    "poster": "/artwork/midnight-run-poster.svg",
-    "backdrop": "/artwork/midnight-run-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "trending"
     ],
-    "rating": 8.0,
-    "badge": "ACTION FEATURE"
+    "rating": 8,
+    "badge": "ACTION FEATURE",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Empty desert highway through red rock"
   },
   {
     "id": "bf-009",
@@ -433,14 +473,19 @@
       "Adventure"
     ],
     "synopsis": "Three siblings reunite at the family lighthouse to make a decision that changes their hometown.",
-    "poster": "/artwork/quiet-coast-poster.svg",
-    "backdrop": "/artwork/quiet-coast-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "discovery"
     ],
     "rating": 8.5,
-    "badge": "AUDIENCE FAVORITE"
+    "badge": "AUDIENCE FAVORITE",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Mountain lakeside cabin in quiet evening light"
   },
   {
     "id": "bf-010",
@@ -457,15 +502,20 @@
       "Sci-Fi"
     ],
     "synopsis": "A lighthouse keeper intercepts an SOS from a vessel that sank before she was born.",
-    "poster": "/artwork/horizon-signal-poster.svg",
-    "backdrop": "/artwork/horizon-signal-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "trending",
       "discovery"
     ],
-    "rating": 9.0,
-    "badge": "FEATURED SERIES"
+    "rating": 9,
+    "badge": "FEATURED SERIES",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Lone climber among dramatic mountain ridges"
   },
   {
     "id": "bf-011",
@@ -482,14 +532,19 @@
       "Art"
     ],
     "synopsis": "Four emerging filmmakers share the personal stories that changed their relationship with the camera.",
-    "poster": "/artwork/frame-by-frame-poster.svg",
-    "backdrop": "/artwork/frame-by-frame-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "discovery"
     ],
     "rating": 8.1,
-    "badge": "ART HOUSE"
+    "badge": "ART HOUSE",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1485846234645-a62644f84728",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Camera clapperboard on location"
   },
   {
     "id": "bf-012",
@@ -506,13 +561,18 @@
       "Drama"
     ],
     "synopsis": "Across desert roads and ancient towns, a musician sets out to return an unfinished song to its composer.",
-    "poster": "/artwork/saffron-sky-poster.svg",
-    "backdrop": "/artwork/saffron-sky-wide.svg",
+    "poster": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=640&h=960&q=85",
+    "backdrop": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1920&h=1080&q=82",
     "featured": false,
     "collection": [
       "trending"
     ],
     "rating": 8.3,
-    "badge": "NEW ARRIVAL"
+    "badge": "NEW ARRIVAL",
+    "imageSourceUrl": "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8",
+    "imageCredit": "Illustrative photograph sourced from Unsplash (not a film poster)",
+    "artworkLicenseUrl": "https://unsplash.com/license",
+    "artworkChanges": "Cropping and text overlays are applied in the BharatFlix interface.",
+    "artworkDescription": "Golden sunrise above misty grassland"
   }
 ]

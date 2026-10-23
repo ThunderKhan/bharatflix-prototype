@@ -88,3 +88,7 @@ Includes `/admin` demo CMS, browse/search/edit, feature/unfeature, draft/publish
 The homepage includes real Blender open films, credited Creative Commons poster URLs and selected official YouTube embedded films. Fictional titles/series remain for demo workflows. For each open film, see its source and license on the detail page. Full image/video inventory: [docs/OPEN_FILM_ASSETS.md](docs/OPEN_FILM_ASSETS.md). A network connection is required to load remote posters and YouTube frames.
 
 This viewer-side catalogue polish is intentionally independent of the CMS implementation workstream. Existing browser-local CMS behavior remains unchanged. Remote image and embedded YouTube availability depend on third-party services and must be verified on the presentation network.
+
+## Premium design system and imagery
+
+The canonical dark, neutral-champagne OTT design is [DESIGN.md](DESIGN.md). Real Blender film credits are in [Open film assets](docs/OPEN_FILM_ASSETS.md); the 12 photographic **fictional** concepts with source links are listed in [Concept photography](docs/CONCEPT_PHOTOGRAPHY.md). Do not add purple gradients or abstract SVG pseudo-posters. CMS contributors should branch from `main` and avoid changing catalogue components concurrently.
