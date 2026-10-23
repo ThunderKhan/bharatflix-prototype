@@ -447,3 +447,26 @@ a { color: inherit; text-decoration: none; }
   .related-section .detail-section-heading { flex-direction: column; align-items: flex-start; }
   .detail-legal { align-items: flex-start; line-height: 1.5; }
 }
+
+/* Phase 3 — theatrical player, influenced by cinematic OTT presentation patterns */
+.watch-screen { min-height: 100vh; background: radial-gradient(ellipse at 50% -120px,#192443 0%,#080910 58%); color: var(--ink); }
+.watch-topbar { height: 83px; max-width: 1560px; padding: 0 clamp(20px,5vw,76px); margin: auto; display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid var(--line); }
+.watch-back,.watch-more { display:inline-flex; align-items:center; gap:9px; color:#cfd0dd; font-size:13px; font-weight:700; }
+.watch-back:hover,.watch-more:hover { color:white; }
+.watch-wordmark { font-size:25px; font-weight:850; letter-spacing:-1.5px; } .watch-wordmark span { font-weight:400; } .watch-wordmark b { color:var(--accent); }
+.watch-demo-label { color:#a6b2c9; font-size:10px; font-weight:750; letter-spacing:1.7px; display:flex; align-items:center; gap:8px; white-space:nowrap; } .watch-demo-label span { background:#58d5ae; width:7px; height:7px; border-radius:50%; }
+.watch-shell { max-width:1460px; margin:auto; padding:45px clamp(20px,5vw,76px) 100px; }
+.watch-intro { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; margin-bottom:27px; }
+.watch-intro h1 { font-size:clamp(32px,4vw,60px); margin:9px 0 7px; letter-spacing:-.05em; } .watch-intro p { color:#9fa5ba; margin:0; font-size:14px; }
+.watch-cinema { width:100%; aspect-ratio:16/9; background:#05060b; position:relative; border:1px solid #ffffff26; box-shadow:0 28px 90px #000a; border-radius:12px; overflow:hidden; }
+.watch-cinema video,.watch-cinema iframe { width:100%; height:100%; display:block; border:0; background:black; } .watch-cinema video { object-fit:contain; }
+.watch-overlay-label { position:absolute; top:18px; left:18px; pointer-events:none; display:flex; align-items:center; gap:7px; background:#0c111dcc; color:#fff; border:1px solid #ffffff33; border-radius:6px; padding:9px 11px; font-size:10px; font-weight:800; letter-spacing:1px; }
+.watch-error { height:100%; display:flex; justify-content:center; flex-direction:column; align-items:center; gap:12px; text-align:center; color:#ccc; } .watch-error strong { color:white; font-size:23px; } .watch-error p { margin:0; } .watch-error button { background:var(--accent); border:0; color:#15111c; border-radius:6px; padding:11px 18px; font-weight:800; }
+.watch-provider-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:17px; margin-top:20px; }
+.watch-tabs { display:inline-flex; border:1px solid var(--line); padding:4px; border-radius:10px; background:#151825; gap:4px; }
+.watch-tabs button { color:#a9b0c3; border:0; background:transparent; padding:11px 15px; display:flex; align-items:center; gap:8px; border-radius:7px; font-weight:700; font-size:12px; }
+.watch-tabs button[aria-pressed='true'] { color:#fff; background:#31394f; }
+.watch-playback-note { color:#9298ab; font-size:12px; display:flex; gap:8px; align-items:center; max-width:410px; line-height:1.6; }
+.watch-next-row { display:flex; align-items:center; justify-content:space-between; gap:30px; padding:38px 0; border-bottom:1px solid var(--line); margin-top:27px; } .watch-next-row h2 { font-size:clamp(22px,3vw,30px); margin:8px 0; } .watch-next-row p { font-size:13px; color:#a5a7b6; max-width:560px; line-height:1.6; } .watch-next-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.watch-credits { display:flex; gap:15px; align-items:center; margin-top:25px; color:#d4d5dd; } .watch-credits img { width:52px; height:76px; object-fit:cover; border-radius:5px; } .watch-credits p { font-size:12px; color:#aaa; margin:6px 0; } .watch-credits small { color:#7f8294; display:block; line-height:1.6; }
+@media (max-width:700px) { .watch-topbar { height:68px; } .watch-wordmark { font-size:20px; } .watch-demo-label { display:none; } .watch-shell { padding-top:24px; } .watch-intro { align-items:flex-start; } .watch-intro h1 { font-size:29px; } .watch-more { display:none; } .watch-next-row { display:block; } .watch-next-actions { margin-top:22px; } .watch-overlay-label { font-size:8px; top:8px; left:8px; padding:5px 7px; } }
