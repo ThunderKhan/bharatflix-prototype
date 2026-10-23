@@ -22,6 +22,8 @@ export interface MediaTitle {
   mediaOrigin?: "open-film";
   imageSourceUrl?: string;
   imageCredit?: string;
+  /** Photo-based concept artwork is illustrative, not an actual film poster. */
+  artworkDescription?: string;
   artworkChanges?: string;
   artworkLicenseUrl?: string;
   filmSourceUrl?: string;

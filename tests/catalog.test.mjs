@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
@@ -24,7 +24,7 @@ test("all IDs and slugs are unique with no deceptive catalogue entries", () => {
   }
 });
 
-test("fictional titles have local artwork, open films have licensed remote poster references", () => {
+test("fictional titles use sourced photographic concept art; open films use attributed posters", () => {
   for (const item of titles) {
     if (item.mediaOrigin === "open-film") {
       assert.match(item.poster, /^https:\/\/thumb\.wikimedia\.org\/wikipedia\/commons\/thumb\//);
@@ -38,11 +38,12 @@ test("fictional titles have local artwork, open films have licensed remote poste
       assert.equal(item.rating, 0, "Do not invent ratings for real films");
     } else {
       for (const key of ["poster", "backdrop"]) {
-        assert.match(item[key], /^\/artwork\/[a-z0-9-]+\.svg$/);
-        const abs = path.join(projectRoot, "public", item[key].slice(1));
-        assert.ok(existsSync(abs), `Missing artwork for ${item.slug}: ${key}`);
-        assert.match(readFileSync(abs, "utf8"), /^<svg /);
+        assert.match(item[key], /^https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+\?/);
       }
+      assert.match(item.imageSourceUrl, /^https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+$/);
+      assert.equal(item.artworkLicenseUrl, "https://unsplash.com/license");
+      assert.match(item.imageCredit, /photograph sourced from Unsplash/);
+      assert.ok(item.artworkDescription?.length > 10);
     }
   }
 });
