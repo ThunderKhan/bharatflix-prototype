@@ -7,7 +7,10 @@ export const runtime = "nodejs";
 export const noStoreHeaders = { "Cache-Control": "private, no-store" };
 export function isSameOriginAction(request: NextRequest): boolean {
   const origin = request.headers.get("origin");
-  const expected = process.env.BHARATFLIX_APP_ORIGIN ?? request.nextUrl.origin;
+  // Next.js may normalize nextUrl.origin to localhost even when accessed through 127.0.0.1 or a LAN host.
+  // For reverse proxies, configure BHARATFLIX_APP_ORIGIN to an exact, trusted canonical origin.
+  const host = request.headers.get("host");
+  const expected = process.env.BHARATFLIX_APP_ORIGIN ?? (host ? `${request.nextUrl.protocol}//${host}` : request.nextUrl.origin);
   return origin === expected && request.headers.get("x-bharatflix-action") === "1" && (request.headers.get("content-type") ?? "").toLowerCase().startsWith("application/json");
 }
 export function actionGuard(request: NextRequest): NextResponse | null {
