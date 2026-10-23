@@ -34,3 +34,10 @@ test("Phase 3 video sources are allowlisted demos and credits are visible",()=>{
  assert.match(media.DEMO_YOUTUBE_ID,/^[\w-]{11}$/);
  assert.match(read("src/components/player/watch-experience.tsx"),/Big Buck Bunny/);
 });
+test("Phase 4 local-library parser rejects corrupt input and sanitizes entries",()=>{
+ const lib=loadTs("src/lib/demo-library.ts", {react:{useMemo:()=>{},useSyncExternalStore:()=>{}}});
+ assert.equal(lib.parseLibrary("invalid").watchlist.length,0);
+ const x=lib.parseLibrary(JSON.stringify({watchlist:["test","test","../../bad"],history:[{id:"valid-id",seconds:4,duration:8,updatedAt:1},{id:"other",seconds:-1,duration:0,updatedAt:1}]}));
+ assert.deepEqual(Array.from(x.watchlist),["test"]);
+ assert.equal(x.history.length,1);
+});

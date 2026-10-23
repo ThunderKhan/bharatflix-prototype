@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { ArrowRight, Film, MonitorPlay, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { getCollection, getFeaturedTitles, getTitlesByKind } from "@/lib/catalog";
+import { useDemoLibrary } from "@/lib/demo-library";
+import { getWatchTarget } from "@/lib/demo-media";
 import type { MediaTitle } from "@/types/media";
 import { FeaturedHero } from "./featured-hero";
 import { PreviewDialog } from "./preview-dialog";
@@ -12,6 +14,8 @@ import { SiteHeader } from "./site-header";
 import { TitleRow } from "./title-row";
 
 export function HomeExperience() {
+  const library = useDemoLibrary();
+  const continueTitles = library.history.map((entry) => getWatchTarget(entry.id)?.title).filter((item): item is MediaTitle => Boolean(item)).filter((item, index, array) => array.findIndex((other) => other.slug === item.slug) === index);
   const [searchOpen, setSearchOpen] = useState(false);
   const [selected, setSelected] = useState<MediaTitle | null>(null);
   const openSearch = useCallback(() => setSearchOpen(true), []);
@@ -33,6 +37,7 @@ export function HomeExperience() {
       <FeaturedHero titles={getFeaturedTitles()} onSelect={openTitle}/>
       <div className="home-main-content">
         <div className="editorial-divider"><span><Sparkles size={16}/> CURATED FOR THE BIG SCREEN</span><span>EVERY STORY DESERVES A SPOTLIGHT</span></div>
+        {continueTitles.length > 0 && <TitleRow id="continue" eyebrow="BACK FOR MORE" title="Continue watching" description="Pick up your sample playback from My Space." titles={continueTitles} onSelect={openTitle}/> }
         <TitleRow id="trending" eyebrow="WHAT'S MAKING WAVES" title="Trending this week" description="A little of everything, and a lot to discover." titles={getCollection("trending")} onSelect={openTitle} ranked />
         <section className="discovery-banner" aria-label="BharatFlix content discovery"><div className="discovery-icon"><MonitorPlay size={32}/></div><div><span className="section-eyebrow">A NEW WAY TO WATCH</span><h2>Stories don&apos;t have borders.</h2><p>Discover films, series and voices across genres—curated for a better viewing experience.</p></div><Link href="/explore">Explore the catalogue <ArrowRight size={18}/></Link></section>
         <TitleRow id="movies" eyebrow="MADE FOR MOVIE NIGHTS" title="Featured films" description="Fictional titles created for this design prototype." titles={getTitlesByKind("movie")} onSelect={openTitle}/>

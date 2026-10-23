@@ -69,6 +69,6 @@ The Phase 02 branch adds:
 Validation: `npm run lint && npm run typecheck && npm run build && npm test`.
 See `docs/PHASE_02_REVIEW.md` for test scenarios and prototype constraints.
 
-## Phase 03 — Demo playback
+## Phase 04 — My Space
 
-Includes `/watch/[id]` for all fictional films and series episodes, native HTML5 CC0 sample video, optional official YouTube embed (Blender Foundation Big Buck Bunny), previous/next episode buttons, responsive theater layout and an error fallback. Sample footage is *not* the fictional title. No restricted or unauthorized content is served. See [docs/PHASE_03_REVIEW.md](docs/PHASE_03_REVIEW.md).
+Includes `/my-space` with My List, Continue Watching, and local profile reset, plus favorite controls on detail pages. Native HTML5 progress persists *only in the same browser*; YouTube playback is not tracked. See [docs/PHASE_04_REVIEW.md](docs/PHASE_04_REVIEW.md).

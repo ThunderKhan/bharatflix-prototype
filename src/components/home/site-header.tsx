@@ -13,6 +13,7 @@ const links = [
   { label: "Movies", href: "/explore?kind=movie" },
   { label: "Series", href: "/explore?kind=series" },
   { label: "Collections", href: "/#collections" },
+  { label: "My Space", href: "/my-space" },
 ];
 
 export function SiteHeader({ onOpenSearch }: Props) {
@@ -26,7 +27,7 @@ export function SiteHeader({ onOpenSearch }: Props) {
       <div className="header-actions">
         <span className="demo-chip"><span/> DEMO EDITION</span>
         <button className="header-icon-button" type="button" aria-label="Search titles" onClick={onOpenSearch}><Search size={21}/></button>
-        <span className="header-avatar" aria-label="Demo viewer" title="Demo viewer"><UserRound size={19}/></span>
+        <Link className="header-avatar" href="/my-space" aria-label="Open My Space" title="My Space"><UserRound size={19}/></Link>
         <button className="header-icon-button mobile-menu-toggle" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={22}/> : <Menu size={22}/>}</button>
       </div>
     </div>
