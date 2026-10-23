@@ -31,6 +31,8 @@ jobs:
         run: npm run build
       - name: Automated tests
         run: npm test
+      - name: Auth HTTP smoke (production server)
+        run: npm run test:auth-smoke
       - name: Production dependency security audit
         run: npm audit --omit=dev --audit-level=high
         continue-on-error: true

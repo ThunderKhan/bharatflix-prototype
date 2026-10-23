@@ -44,3 +44,6 @@ This is intentionally built for a local client walkthrough or a single long-runn
 
 ## Integration note for CMS colleague
 The current `/admin` editing interface still uses browser-local demo catalogue edits (`src/lib/demo-cms.ts`). The **authentication and role gate is real**, but this is **not yet a secure persistent, shared CMS**. Keep CMS API routes independently protected by an authenticated `admin` or `superadmin` check with action CSRF/origin verification, validate all data server-side, and never treat hiding frontend controls as authorization.
+
+## Automated HTTP end-to-end check
+After `npm run build`, execute `npm run test:auth-smoke`. It starts a disposable production Next server with a temporary SQLite database, tests signup, session privileges, CSRF rejection, per-user watchlists, role promotion and logout, then removes its test data. CI runs this on each `main` push.
