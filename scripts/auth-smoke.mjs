@@ -31,7 +31,7 @@ async function api(endpoint,{method="GET",cookie,body,origin=base}={}){
 async function json(res){return res.json();}
 async function register(email,name){
  const res=await api("/api/auth/register",{method:"POST",body:{email,name,password}});
- assert.equal(res.status,201,`Registration failed ${res.status}: ${await res.text()}`);
+ if(res.status!==201)throw Error(`Registration failed ${res.status}: ${await res.text()}`);
  return {user:(await json(res)).user,cookie:res.headers.get("set-cookie")?.split(";")[0]};
 }
 try {
@@ -53,18 +53,18 @@ try {
  const denied=await api("/api/library",{method:"POST",cookie:first.cookie,origin:"https://evil.invalid",body:{action:"toggle",slug:"sintel"}});
  assert.equal(denied.status,403);
  const add=await api("/api/library",{method:"POST",cookie:first.cookie,body:{action:"toggle",slug:"sintel"}});
- assert.equal(add.status,200,`Library save failed ${add.status}: ${await add.text()}`);
+ if(add.status!==200)throw Error(`Library save failed ${add.status}: ${await add.text()}`);
  const one=await json(await api("/api/library",{cookie:first.cookie}));
  const two=await json(await api("/api/library",{cookie:second.cookie}));
  assert.deepEqual(one.library.watchlist,["sintel"]);
  assert.deepEqual(two.library.watchlist,[],"Second viewer read someone else's watchlist");
  const login=await api("/api/auth/login",{method:"POST",body:{email:"owner@test.invalid",password}});
- assert.equal(login.status,200,`Super-admin login failed: ${await login.text()}`);
+ if(login.status!==200)throw Error(`Super-admin login failed: ${await login.text()}`);
  const ownerCookie=login.headers.get("set-cookie")?.split(";")[0];
  const owner=await json(await api("/api/auth/me",{cookie:ownerCookie}));
  assert.equal(owner.user.role,"superadmin");
  const staff=await api("/api/admin/users",{method:"PATCH",cookie:ownerCookie,body:{userId:first.user.id,role:"admin"}});
- assert.equal(staff.status,200,`Promotion failed: ${await staff.text()}`);
+ if(staff.status!==200)throw Error(`Promotion failed: ${await staff.text()}`);
  const upgraded=await json(await api("/api/auth/me",{cookie:first.cookie}));
  assert.equal(upgraded.user.role,"admin", "Existing sessions should use current server-side role");
  const adminPage=await api("/admin",{cookie:first.cookie});
