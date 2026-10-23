@@ -44,7 +44,7 @@ export function ExploreExperience({ initialKind = "all" }: { initialKind?: Media
           <label><span className="sr-only">Genre</span><select value={genre} onChange={(event) => setGenre(event.target.value)}><option value="all">All genres</option>{options.genres.map((item) => <option key={item} value={item}>{item}</option>)}</select></label>
           <label><span className="sr-only">Language</span><select value={language} onChange={(event) => setLanguage(event.target.value)}><option value="all">All languages</option>{options.languages.map((item) => <option key={item} value={item}>{item}</option>)}</select></label>
           <label><span className="sr-only">Release year</span><select value={year} onChange={(event) => setYear(event.target.value)}><option value="all">Any year</option>{options.years.map((item) => <option key={item} value={item}>{item}</option>)}</select></label>
-          <label><span className="sr-only">Sort order</span><select value={sort} onChange={(event) => setSort(event.target.value)}>{sortChoices.map(({id,label}) => <option key={id} value={id}>{label}</option>)}</select></label>
+          <label><span className="sr-only">Sort order</span><select value={sort} onChange={(event) => setSort(sortChoices.find((choice) => choice.id === event.target.value)?.id ?? "featured")}>{sortChoices.map(({id,label}) => <option key={id} value={id}>{label}</option>)}</select></label>
         </div>
       </div>
     </section>
