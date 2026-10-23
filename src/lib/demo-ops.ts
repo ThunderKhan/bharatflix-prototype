@@ -116,7 +116,7 @@ export function setRightsReview(slug: string, status: RightsState) {
 }
 export function queueIntake(slug: string, asset: IntakeTask["asset"]) {
   if (!isSlug(slug) || !["poster", "video", "subtitles"].includes(asset)) return;
-  update((state) => log({ ...state, intakes: [{ id: `task-${Date.now().toString(36)}`, slug, asset, status: "queued", createdAt: new Date().toISOString() }, ...state.intakes].slice(0, 60) }, `Created ${asset} intake checklist: ${slug}`));
+  update((state) => log({ ...state, intakes: [{ id: `task-${Date.now().toString(36)}`, slug, asset, status: "queued" as const, createdAt: new Date().toISOString() }, ...state.intakes].slice(0, 60) }, `Created ${asset} intake checklist: ${slug}`));
 }
 export function completeIntake(id: string) {
   if (!isSlug(id)) return;
