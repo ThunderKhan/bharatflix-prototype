@@ -23,3 +23,22 @@ export function searchTitles(query: string): MediaTitle[] {
       .some((value) => value.toLocaleLowerCase().includes(term)),
   );
 }
+
+import episodeData from "@/data/episodes.json";
+import creditsData from "@/data/credits.json";
+import type { Season } from "@/types/media";
+
+const episodes = episodeData as Record<string, Season[]>;
+const credits = creditsData as Record<string, string[]>;
+
+export function getTitleBySlug(slug: string): MediaTitle | undefined {
+  return titles.find((item) => item.slug === slug);
+}
+
+export function getSeasonsForTitle(slug: string): Season[] {
+  return episodes[slug] ?? [];
+}
+
+export function getCastForTitle(slug: string): string[] {
+  return credits[slug] ?? [];
+}

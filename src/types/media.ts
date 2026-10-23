@@ -19,3 +19,18 @@ export interface MediaTitle {
   rating: number;
   badge?: string;
 }
+
+/** Fictional metadata for the Phase 2 series browser. Video sources arrive in Phase 3. */
+export interface Episode {
+  id: string;
+  number: number;
+  title: string;
+  synopsis: string;
+  runtime: string;
+}
+
+export interface Season {
+  number: number;
+  name: string;
+  episodes: Episode[];
+}

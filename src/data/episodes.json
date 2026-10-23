@@ -1,0 +1,130 @@
+{
+  "city-of-echoes": [
+    {
+      "number": 1,
+      "name": "Season 1",
+      "episodes": [
+        {
+          "id": "city-of-echoes-s1e1",
+          "number": 1,
+          "title": "The Unsent Message",
+          "synopsis": "An anonymous voice note reaches a detective just before dawn.",
+          "runtime": "43m"
+        },
+        {
+          "id": "city-of-echoes-s1e2",
+          "number": 2,
+          "title": "Streetlight No. 9",
+          "synopsis": "A missing camera and a familiar melody pull the investigation underground.",
+          "runtime": "47m"
+        },
+        {
+          "id": "city-of-echoes-s1e3",
+          "number": 3,
+          "title": "A City of Witnesses",
+          "synopsis": "Every witness gives a different account of the same midnight train.",
+          "runtime": "44m"
+        },
+        {
+          "id": "city-of-echoes-s1e4",
+          "number": 4,
+          "title": "The Last Recording",
+          "synopsis": "The final signal exposes a secret hiding in plain sight.",
+          "runtime": "51m"
+        }
+      ]
+    }
+  ],
+  "parallel": [
+    {
+      "number": 1,
+      "name": "Season 1",
+      "episodes": [
+        {
+          "id": "parallel-s1e1",
+          "number": 1,
+          "title": "The Other Apartment",
+          "synopsis": "An architect wakes up with memories of a home she never lived in.",
+          "runtime": "48m"
+        },
+        {
+          "id": "parallel-s1e2",
+          "number": 2,
+          "title": "Blue Notebook",
+          "synopsis": "An address written in an unfamiliar hand unlocks a second timeline.",
+          "runtime": "45m"
+        },
+        {
+          "id": "parallel-s1e3",
+          "number": 3,
+          "title": "Crossing Point",
+          "synopsis": "Two versions of the city begin to overlap.",
+          "runtime": "52m"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Season 2",
+      "episodes": [
+        {
+          "id": "parallel-s2e1",
+          "number": 1,
+          "title": "Second Chances",
+          "synopsis": "A year later, a different choice sets another world in motion.",
+          "runtime": "49m"
+        },
+        {
+          "id": "parallel-s2e2",
+          "number": 2,
+          "title": "Borrowed Hours",
+          "synopsis": "The cost of crossing becomes impossible to ignore.",
+          "runtime": "47m"
+        },
+        {
+          "id": "parallel-s2e3",
+          "number": 3,
+          "title": "One City Left",
+          "synopsis": "Every timeline has a price, and the final one comes due.",
+          "runtime": "54m"
+        }
+      ]
+    }
+  ],
+  "horizon-signal": [
+    {
+      "number": 1,
+      "name": "Season 1",
+      "episodes": [
+        {
+          "id": "horizon-signal-s1e1",
+          "number": 1,
+          "title": "Channel Six",
+          "synopsis": "The keeper hears a distress call from an impossible ship.",
+          "runtime": "41m"
+        },
+        {
+          "id": "horizon-signal-s1e2",
+          "number": 2,
+          "title": "Low Tide",
+          "synopsis": "The shoreline reveals objects that should not exist.",
+          "runtime": "46m"
+        },
+        {
+          "id": "horizon-signal-s1e3",
+          "number": 3,
+          "title": "The Weather Report",
+          "synopsis": "An approaching storm brings an unexpected passenger.",
+          "runtime": "45m"
+        },
+        {
+          "id": "horizon-signal-s1e4",
+          "number": 4,
+          "title": "Beyond the Beacon",
+          "synopsis": "The truth behind the signal changes the meaning of home.",
+          "runtime": "50m"
+        }
+      ]
+    }
+  ]
+}

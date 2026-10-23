@@ -2,14 +2,14 @@
 
 **Project name:** BharatFlix (without an H). **Audience:** VSPH/client review. **Target:** Six integrated viewer/admin pages. **Media:** Fictional catalogue and authorized sample assets only.
 
-## Phase 01 — Foundation & Homepage (current)
+## Phase 01 — Foundation & Homepage (implemented; draft PR #1)
 - Next.js 16, React 19, TypeScript, Tailwind 4 tooling and custom scalable design tokens.
 - Original fictional catalogue, complete with client-owned concept artwork; no TMDB or scraped content.
 - Adapt open-source MIT carousel/card/hero patterns and preserve third-party notice.
 - Responsive header, curated content rows, featured story selection, search overlay and details preview.
 - Acceptance: all homepage actions work; no dead outbound app links; keyboard search opens; image artwork loads; no unauthorized video.
 
-## Phase 02 — Discovery & Details
+## Phase 02 — Discovery & Details (implemented; pending local validation)
 - New **page 2** `/explore`: search, filter by kind/genre/language/year, sorting, empty states.
 - New **page 3** `/title/[slug]`: reusable movie/series details with metadata, cast (fictional for demo), trailers/episodes and related titles.
 - Typed season and episode IDs; episode-specific navigation targets, no fabricated player functionality.

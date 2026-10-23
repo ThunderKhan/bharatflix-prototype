@@ -55,3 +55,16 @@ npm test
 ## Branch strategy
 
 Each phase has its own review branch/PR. Do not merge into `main` until local checks and the phase's acceptance criteria pass. Later phases begin from the accepted previous phase to minimize merge conflicts.
+
+
+## Phase 02 — Discovery and title details
+
+The Phase 02 branch adds:
+
+- `/explore` — search, kind/genre/language/year filters, sorting and poster grid.
+- `/title/[slug]` — dedicated movie/series detail page with fictional cast and recommendations.
+- Series episode browser with season dropdown; actual playback is intentionally deferred to Phase 03.
+- `/explore?kind=movie` and `/explore?kind=series` for direct catalogue tabs.
+
+Validation: `npm run lint && npm run typecheck && npm run build && npm test`.
+See `docs/PHASE_02_REVIEW.md` for test scenarios and prototype constraints.
