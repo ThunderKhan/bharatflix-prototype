@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ArrowRight, Film, MonitorPlay, Sparkles } from "lucide-react";
-import { getCollection, getFeaturedTitles, getTitlesByKind, titles } from "@/lib/catalog";
+import { getCollection, getFeaturedTitles, getTitlesByKind } from "@/lib/catalog";
 import type { MediaTitle } from "@/types/media";
 import { FeaturedHero } from "./featured-hero";
 import { PreviewDialog } from "./preview-dialog";
@@ -33,7 +33,7 @@ export function HomeExperience() {
       <div className="home-main-content">
         <div className="editorial-divider"><span><Sparkles size={16}/> CURATED FOR THE BIG SCREEN</span><span>EVERY STORY DESERVES A SPOTLIGHT</span></div>
         <TitleRow id="trending" eyebrow="WHAT'S MAKING WAVES" title="Trending this week" description="A little of everything, and a lot to discover." titles={getCollection("trending")} onSelect={openTitle} ranked />
-        <section className="discovery-banner" aria-label="BharatFlix content discovery"><div className="discovery-icon"><MonitorPlay size={32}/></div><div><span className="section-eyebrow">A NEW WAY TO WATCH</span><h2>Stories don't have borders.</h2><p>Discover films, series and voices across genres—curated for a better viewing experience.</p></div><button type="button" onClick={openSearch}>Explore the catalogue <ArrowRight size={18}/></button></section>
+        <section className="discovery-banner" aria-label="BharatFlix content discovery"><div className="discovery-icon"><MonitorPlay size={32}/></div><div><span className="section-eyebrow">A NEW WAY TO WATCH</span><h2>Stories don&apos;t have borders.</h2><p>Discover films, series and voices across genres—curated for a better viewing experience.</p></div><button type="button" onClick={openSearch}>Explore the catalogue <ArrowRight size={18}/></button></section>
         <TitleRow id="movies" eyebrow="MADE FOR MOVIE NIGHTS" title="Featured films" description="Fictional titles created for this design prototype." titles={getTitlesByKind("movie")} onSelect={openTitle}/>
         <TitleRow id="series" eyebrow="ONE MORE EPISODE" title="Series worth starting" description="Multi-episode experiences arrive in the upcoming phases." titles={getTitlesByKind("series")} onSelect={openTitle}/>
         <TitleRow id="collections" eyebrow="EXPLORE SOMETHING DIFFERENT" title="Off the beaten path" titles={getCollection("discovery")} onSelect={openTitle}/>
