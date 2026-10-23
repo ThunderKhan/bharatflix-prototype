@@ -1,5 +1,228 @@
 [
   {
+    "id": "bf-201",
+    "slug": "sintel",
+    "title": "Sintel",
+    "tagline": "A promise across fire and snow.",
+    "kind": "movie",
+    "year": 2010,
+    "runtime": "14m 48s",
+    "maturity": "Unrated",
+    "language": "English",
+    "genres": [
+      "Animation",
+      "Fantasy"
+    ],
+    "synopsis": "A young adventurer searches for her lost dragon companion and confronts the cost of her journey.",
+    "poster": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Sintel_poster.jpg/500px-Sintel_poster.jpg",
+    "backdrop": "https://i.ytimg.com/vi/eRsGyueVLvQ/hqdefault.jpg",
+    "featured": true,
+    "collection": [
+      "open-cinema",
+      "trending"
+    ],
+    "rating": 0,
+    "badge": "BLENDER OPEN FILM",
+    "mediaOrigin": "open-film",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Sintel_poster.jpg",
+    "imageCredit": "© Blender Foundation | durian.blender.org",
+    "artworkLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "filmSourceUrl": "https://studio.blender.org/projects/sintel/",
+    "youtubeId": "eRsGyueVLvQ",
+    "artworkChanges": "Displayed as a CSS-cropped thumbnail; source image unchanged."
+  },
+  {
+    "id": "bf-202",
+    "slug": "sprite-fright",
+    "title": "Sprite Fright",
+    "tagline": "The forest has a wicked sense of humor.",
+    "kind": "movie",
+    "year": 2021,
+    "runtime": "10m 30s",
+    "maturity": "Unrated",
+    "language": "English",
+    "genres": [
+      "Animation",
+      "Horror"
+    ],
+    "synopsis": "A group of teenagers wanders into a quiet forest and discovers that its tiny mushroom inhabitants are far from harmless.",
+    "poster": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Sprite_Fright-movie_poster.jpg/500px-Sprite_Fright-movie_poster.jpg",
+    "backdrop": "https://i.ytimg.com/vi/_cMxraX_5RE/hqdefault.jpg",
+    "featured": true,
+    "collection": [
+      "open-cinema",
+      "trending"
+    ],
+    "rating": 0,
+    "badge": "BLENDER OPEN FILM",
+    "mediaOrigin": "open-film",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Sprite_Fright-movie_poster.jpg",
+    "imageCredit": "Blender Studio",
+    "artworkLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "filmSourceUrl": "https://studio.blender.org/films/sprite-fright/",
+    "youtubeId": "_cMxraX_5RE",
+    "artworkChanges": "Displayed as a CSS-cropped thumbnail; source image unchanged."
+  },
+  {
+    "id": "bf-203",
+    "slug": "spring",
+    "title": "Spring",
+    "tagline": "A beautiful world needs its guardians.",
+    "kind": "movie",
+    "year": 2019,
+    "runtime": "7m 44s",
+    "maturity": "Unrated",
+    "language": "No dialogue",
+    "genres": [
+      "Animation",
+      "Fantasy"
+    ],
+    "synopsis": "A shepherd girl and her dog encounter ancient spirits and play a role in the changing of the seasons.",
+    "poster": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Spring2019AlphaPosterBlender.jpg/500px-Spring2019AlphaPosterBlender.jpg",
+    "backdrop": "https://i.ytimg.com/vi/WhWc3b3KhnY/hqdefault.jpg",
+    "featured": true,
+    "collection": [
+      "open-cinema",
+      "trending"
+    ],
+    "rating": 0,
+    "badge": "BLENDER OPEN FILM",
+    "mediaOrigin": "open-film",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Spring2019AlphaPosterBlender.jpg",
+    "imageCredit": "Blender Foundation",
+    "artworkLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "filmSourceUrl": "https://studio.blender.org/projects/spring/",
+    "youtubeId": "WhWc3b3KhnY",
+    "artworkChanges": "Displayed as a CSS-cropped thumbnail; source image unchanged."
+  },
+  {
+    "id": "bf-204",
+    "slug": "big-buck-bunny",
+    "title": "Big Buck Bunny",
+    "tagline": "One enormous bunny. Three very small bullies.",
+    "kind": "movie",
+    "year": 2008,
+    "runtime": "10m",
+    "maturity": "Unrated",
+    "language": "No dialogue",
+    "genres": [
+      "Animation",
+      "Comedy"
+    ],
+    "synopsis": "A kindhearted rabbit turns the tables on a trio of mischievous woodland animals.",
+    "poster": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/500px-Big_buck_bunny_poster_big.jpg",
+    "backdrop": "https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg",
+    "featured": true,
+    "collection": [
+      "open-cinema",
+      "trending"
+    ],
+    "rating": 0,
+    "badge": "BLENDER OPEN FILM",
+    "mediaOrigin": "open-film",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Big_buck_bunny_poster_big.jpg",
+    "imageCredit": "© Blender Foundation | www.bigbuckbunny.org",
+    "artworkLicenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "filmSourceUrl": "https://studio.blender.org/projects/big-buck-bunny/",
+    "youtubeId": "aqz-KE-bpKQ",
+    "artworkChanges": "Displayed as a CSS-cropped thumbnail; source image unchanged."
+  },
+  {
+    "id": "bf-205",
+    "slug": "cosmos-laundromat",
+    "title": "Cosmos Laundromat: First Cycle",
+    "tagline": "Sometimes change begins at the edge of the world.",
+    "kind": "movie",
+    "year": 2015,
+    "runtime": "12m",
+    "maturity": "Unrated",
+    "language": "English",
+    "genres": [
+      "Animation",
+      "Fantasy"
+    ],
+    "synopsis": "On a lonely island, a distressed sheep is offered a fantastical escape into an unexpected new reality.",
+    "poster": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/CosmosLaundromatPoster.jpg/500px-CosmosLaundromatPoster.jpg",
+    "backdrop": "https://i.ytimg.com/vi/Y-rmzh0PI3c/hqdefault.jpg",
+    "featured": false,
+    "collection": [
+      "open-cinema",
+      "discovery"
+    ],
+    "rating": 0,
+    "badge": "BLENDER OPEN FILM",
+    "mediaOrigin": "open-film",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:CosmosLaundromatPoster.jpg",
+    "imageCredit": "CC-BY 2015, Blender Foundation, cloud.blender.org (art by Andy Goralczyk)",
+    "artworkLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "filmSourceUrl": "https://studio.blender.org/projects/cosmos-laundromat/",
+    "youtubeId": "Y-rmzh0PI3c",
+    "artworkChanges": "Displayed as a CSS-cropped thumbnail; source image unchanged."
+  },
+  {
+    "id": "bf-206",
+    "slug": "elephants-dream",
+    "title": "Elephants Dream",
+    "tagline": "A strange journey through a mechanical world.",
+    "kind": "movie",
+    "year": 2006,
+    "runtime": "11m",
+    "maturity": "Unrated",
+    "language": "English",
+    "genres": [
+      "Animation",
+      "Sci-Fi"
+    ],
+    "synopsis": "Two travelers navigate a surreal machine-like environment in the first Blender open movie.",
+    "poster": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/500px-ElephantsDreamPoster.jpg",
+    "backdrop": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/ElephantsDreamPoster.jpg/500px-ElephantsDreamPoster.jpg",
+    "featured": false,
+    "collection": [
+      "open-cinema",
+      "discovery"
+    ],
+    "rating": 0,
+    "badge": "BLENDER OPEN FILM",
+    "mediaOrigin": "open-film",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:ElephantsDreamPoster.jpg",
+    "imageCredit": "Bassam Kurdali, Andy Goralczyk and Blender Foundation",
+    "artworkLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "filmSourceUrl": "https://studio.blender.org/projects/elephants-dream/",
+    "artworkChanges": "Displayed as a CSS-cropped thumbnail; source image unchanged."
+  },
+  {
+    "id": "bf-207",
+    "slug": "coffee-run",
+    "title": "Coffee Run",
+    "tagline": "Memories move at the speed of coffee.",
+    "kind": "movie",
+    "year": 2020,
+    "runtime": "3m",
+    "maturity": "Unrated",
+    "language": "English",
+    "genres": [
+      "Animation",
+      "Romance"
+    ],
+    "synopsis": "A young woman revisits fragments of a past relationship during a fast-moving coffee-fueled day.",
+    "poster": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Coffee_Run-movie_poster.png/500px-Coffee_Run-movie_poster.png",
+    "backdrop": "https://i.ytimg.com/vi/PVGeM40dABA/hqdefault.jpg",
+    "featured": false,
+    "collection": [
+      "open-cinema",
+      "discovery"
+    ],
+    "rating": 0,
+    "badge": "BLENDER OPEN FILM",
+    "mediaOrigin": "open-film",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Coffee_Run-movie_poster.png",
+    "imageCredit": "Hjalti Hjalmarsson (Blender Studio)",
+    "artworkLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "filmSourceUrl": "https://studio.blender.org/films/coffee-run/",
+    "youtubeId": "PVGeM40dABA",
+    "artworkChanges": "Displayed as a CSS-cropped thumbnail; source image unchanged."
+  },
+  {
     "id": "bf-001",
     "slug": "last-monsoon",
     "title": "The Last Monsoon",
@@ -16,7 +239,7 @@
     "synopsis": "On a storm-soaked coastline, an estranged journalist returns home to unravel the secret that divided her family.",
     "poster": "/artwork/last-monsoon-poster.svg",
     "backdrop": "/artwork/last-monsoon-wide.svg",
-    "featured": true,
+    "featured": false,
     "collection": [
       "trending",
       "discovery"
@@ -41,7 +264,7 @@
     "synopsis": "A remote research crew receives a message from a station that has been silent for thirty years.",
     "poster": "/artwork/afterlight-poster.svg",
     "backdrop": "/artwork/afterlight-wide.svg",
-    "featured": true,
+    "featured": false,
     "collection": [
       "trending",
       "discovery"
@@ -66,7 +289,7 @@
     "synopsis": "A young detective follows a trail of anonymous recordings through a sleepless city.",
     "poster": "/artwork/city-of-echoes-poster.svg",
     "backdrop": "/artwork/city-of-echoes-wide.svg",
-    "featured": true,
+    "featured": false,
     "collection": [
       "trending"
     ],
@@ -236,7 +459,7 @@
     "synopsis": "A lighthouse keeper intercepts an SOS from a vessel that sank before she was born.",
     "poster": "/artwork/horizon-signal-poster.svg",
     "backdrop": "/artwork/horizon-signal-wide.svg",
-    "featured": true,
+    "featured": false,
     "collection": [
       "trending",
       "discovery"

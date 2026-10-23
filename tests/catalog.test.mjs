@@ -13,7 +13,7 @@ test("catalogue is large enough for rows, with both movies and series", () => {
   assert.ok(titles.filter((item) => item.featured).length >= 3);
 });
 
-test("all IDs and slugs are unique and names are fictional", () => {
+test("all IDs and slugs are unique with no deceptive catalogue entries", () => {
   assert.equal(new Set(titles.map((t) => t.id)).size, titles.length);
   assert.equal(new Set(titles.map((t) => t.slug)).size, titles.length);
   for (const item of titles) {
@@ -24,26 +24,42 @@ test("all IDs and slugs are unique and names are fictional", () => {
   }
 });
 
-test("every title has locally available original poster and backdrop assets", () => {
+test("fictional titles have local artwork, open films have licensed remote poster references", () => {
   for (const item of titles) {
-    for (const key of ["poster", "backdrop"]) {
-      assert.match(item[key], /^\/artwork\/[a-z0-9-]+\.svg$/);
-      const abs = path.join(projectRoot, "public", item[key].slice(1));
-      assert.ok(existsSync(abs), `Missing artwork for ${item.slug}: ${key}`);
-      assert.match(readFileSync(abs, "utf8"), /^<svg /);
+    if (item.mediaOrigin === "open-film") {
+      assert.match(item.poster, /^https:\/\/thumb\.wikimedia\.org\/wikipedia\/commons\/thumb\//);
+      assert.match(item.backdrop, /^https:\/\/(?:thumb\.wikimedia\.org|i\.ytimg\.com)\//);
+      assert.match(item.imageSourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+      assert.match(item.artworkLicenseUrl, /^https:\/\/creativecommons\.org\/licenses\/by\/[34]\.0\//);
+      assert.match(item.filmSourceUrl, /^https:\/\/studio\.blender\.org\//);
+      assert.ok(item.imageCredit?.length > 10);
+      assert.ok(item.artworkChanges?.length > 10);
+      if (item.youtubeId) assert.match(item.youtubeId, /^[\w-]{11}$/);
+      assert.equal(item.rating, 0, "Do not invent ratings for real films");
+    } else {
+      for (const key of ["poster", "backdrop"]) {
+        assert.match(item[key], /^\/artwork\/[a-z0-9-]+\.svg$/);
+        const abs = path.join(projectRoot, "public", item[key].slice(1));
+        assert.ok(existsSync(abs), `Missing artwork for ${item.slug}: ${key}`);
+        assert.match(readFileSync(abs, "utf8"), /^<svg /);
+      }
     }
   }
 });
 
-test("each collection and score is valid", () => {
+test("collections and dates are valid without fictitious scores for open films", () => {
   const kinds = new Set(["movie", "series"]);
   for (const item of titles) {
     assert.ok(kinds.has(item.kind));
-    assert.ok(item.year >= 2010 && item.year <= 2035);
-    assert.ok(item.rating > 0 && item.rating <= 10);
+    assert.ok(item.year >= 2000 && item.year <= 2035);
+    if (item.mediaOrigin !== "open-film") assert.ok(item.rating >= 0 && item.rating <= 10);
     assert.ok(item.collection.length > 0);
     assert.ok(item.genres.length > 0);
   }
+  const open = titles.filter(x => x.mediaOrigin === "open-film");
+  assert.equal(open.length, 7);
+  assert.ok(open.filter(x => x.youtubeId).length >= 6);
+  assert.ok(open.some(x=>x.slug==="sintel"));
 });
 
 test("Five-phase roadmap and upstream license notices exist", () => {

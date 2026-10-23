@@ -5,6 +5,9 @@
 // This version deliberately has no TMDB fetches, remote video sources or autoplay.
 
 import Image from "next/image";
+import Link from "next/link";
+import { getFirstWatchId } from "@/lib/demo-media";
+import { isSamplePlayable } from "@/lib/demo-cms";
 import { ArrowUpRight, CirclePlay, Info, Sparkles } from "lucide-react";
 import { useState } from "react";
 import type { MediaTitle } from "@/types/media";
@@ -27,14 +30,14 @@ export function FeaturedHero({ titles, onSelect }: Props) {
       <div className="hero-gradient" />
       <div className="hero-inner">
         <div className="hero-copy" key={`${active.id}-copy`}>
-          <div className="hero-kicker"><span className="hero-kicker-dot" /> EXCLUSIVE CONCEPT SHOWCASE <Sparkles size={13}/></div>
+          <div className="hero-kicker"><span className="hero-kicker-dot" /> {active.mediaOrigin === "open-film" ? "OPEN CINEMA · LICENSED ARTWORK" : "CURATED SHOWCASE"} <Sparkles size={13}/></div>
           <div className="hero-highlight">{active.badge ?? "FEATURED PREMIERE"}</div>
           <h1>{active.title}</h1>
           <p className="hero-tagline">{active.tagline}</p>
-          <div className="hero-metadata"><span className="rating-pill">★ {active.rating.toFixed(1)}</span><span>{active.year}</span><span>{active.kind === "movie" ? active.runtime : "Original series"}</span><span className="age-pill">{active.maturity}</span></div>
+          <div className="hero-metadata">{active.mediaOrigin === "open-film" ? <span className="rating-pill">OPEN FILM</span> : <span className="rating-pill">★ {active.rating.toFixed(1)}</span>}<span>{active.year}</span><span>{active.kind === "movie" ? active.runtime : "Original series"}</span><span className="age-pill">{active.maturity}</span></div>
           <p className="hero-synopsis">{active.synopsis}</p>
           <div className="hero-ctas">
-            <button className="button-primary" type="button" onClick={() => onSelect(active)}><CirclePlay size={21} fill="currentColor" strokeWidth={1.6} /> Explore title</button>
+            {isSamplePlayable(active.slug) ? <Link className="button-primary" href={`/watch/${getFirstWatchId(active)}`}><CirclePlay size={21} fill="currentColor" strokeWidth={1.6}/> {active.youtubeId ? "Watch official film" : "Watch sample"}</Link> : <button className="button-primary" type="button" onClick={() => onSelect(active)}><CirclePlay size={21} fill="currentColor" strokeWidth={1.6}/> Explore title</button>}
             <button className="button-secondary" type="button" onClick={() => onSelect(active)}><Info size={19}/> More info <ArrowUpRight size={17}/></button>
           </div>
         </div>

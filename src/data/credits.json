@@ -58,5 +58,33 @@
     "Kavya Raman",
     "Aditya Kumar",
     "Priya Anand"
+  ],
+  "sintel": [
+    "Colin Levy",
+    "Blender Foundation / Blender Studio"
+  ],
+  "sprite-fright": [
+    "Matthew Luhn",
+    "Blender Foundation / Blender Studio"
+  ],
+  "spring": [
+    "Andy Goralczyk",
+    "Blender Foundation / Blender Studio"
+  ],
+  "big-buck-bunny": [
+    "Sacha Goedegebure",
+    "Blender Foundation / Blender Studio"
+  ],
+  "cosmos-laundromat": [
+    "Mathieu Auvray",
+    "Blender Foundation / Blender Studio"
+  ],
+  "elephants-dream": [
+    "Bassam Kurdali",
+    "Blender Foundation / Blender Studio"
+  ],
+  "coffee-run": [
+    "Hjalti Hjalmarsson",
+    "Blender Foundation / Blender Studio"
   ]
 }
