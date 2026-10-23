@@ -31,6 +31,8 @@ jobs:
         run: npm run build
       - name: Automated tests
         run: npm test
+      - name: SQLite CMS seed and catalogue inspection
+        run: npm run db:seed && npm run db:status && npm run db:inspect
       - name: Auth HTTP smoke (production server)
         run: npm run test:auth-smoke
       - name: Production dependency security audit
