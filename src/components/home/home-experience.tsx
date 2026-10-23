@@ -1,14 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { ArrowRight, MonitorPlay, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { useDemoCMS } from "@/lib/demo-cms";
 import { useDemoLibrary } from "@/lib/demo-library";
 import { getWatchTarget } from "@/lib/demo-media";
 import type { MediaTitle } from "@/types/media";
 import { FeaturedHero } from "./featured-hero";
 import { PreviewDialog } from "./preview-dialog";
+import { ProviderStrip } from "./provider-strip";
 import { SearchOverlay } from "./search-overlay";
 import { SiteHeader } from "./site-header";
 import { TitleRow } from "./title-row";
@@ -22,9 +23,13 @@ export function HomeExperience() {
   const openSearch = useCallback(() => setSearchOpen(true), []);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
   const closePreview = useCallback(() => setSelected(null), []);
-  const getCollection = (collection: string) => catalogue.filter((title) => title.collection.includes(collection));
-  const getTitlesByKind = (kind: "movie" | "series") => catalogue.filter((title) => title.kind === kind);
   const openTitle = useCallback((title: MediaTitle) => { setSearchOpen(false); setSelected(title); }, []);
+  const movies = catalogue.filter((item) => item.kind === "movie");
+  const series = catalogue.filter((item) => item.kind === "series");
+  const openCinema = movies.filter((item) => item.mediaOrigin === "open-film");
+  const hindi = catalogue.filter((item) => item.language === "Hindi");
+  const animated = movies.filter((item) => item.genres.includes("Animation"));
+  const fantasy = catalogue.filter((item) => item.genres.includes("Fantasy") || item.genres.includes("Sci-Fi"));
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -37,21 +42,21 @@ export function HomeExperience() {
   return <div id="top" className="site-shell">
     <SiteHeader onOpenSearch={openSearch}/>
     <main>
-      <FeaturedHero titles={catalogue.filter((title) => title.featured)} onSelect={openTitle}/>
-      <div className="home-main-content">
-        <div className="editorial-divider"><span><Sparkles size={16}/> FEATURED OPEN CINEMA & ORIGINAL CONCEPTS</span><span>DISCOVER. WATCH. REPEAT.</span></div>
-        <section className="language-curation"><div><span className="section-eyebrow">DISCOVER INDIA</span><h2>Stories in your language</h2></div><div>{["Hindi","Tamil","Telugu","Malayalam","English"].map((language)=><Link href={`/explore?language=${encodeURIComponent(language)}`} key={language}>{language} <ArrowRight size={14}/></Link>)}</div></section>
-        {continueTitles.length > 0 && <TitleRow id="continue" eyebrow="BACK FOR MORE" title="Continue watching" description="Pick up your sample playback from My Space." titles={continueTitles} onSelect={openTitle}/> }
-        <TitleRow id="open-cinema" eyebrow="REAL FILMS. REAL CREDITS." title="Open cinema spotlight" description="Blender open films with authentic posters, film details and clearly credited Creative Commons artwork." titles={getCollection("open-cinema")} onSelect={openTitle}/>
-        <TitleRow id="trending" eyebrow="EDITOR'S SELECTION" title="In the spotlight" description="Handpicked open films and illustrative concepts for the demo." titles={getCollection("trending")} onSelect={openTitle} ranked />
-        <section className="discovery-banner" aria-label="BharatFlix content discovery"><div className="discovery-icon"><MonitorPlay size={32}/></div><div><span className="section-eyebrow">PERSONAL DISCOVERY</span><h2>Every story has a place.</h2><p>Find the right film for tonight. Browse by mood, language, or the stories that stay with you.</p></div><Link href="/explore">Explore the catalogue <ArrowRight size={18}/></Link></section>
-        <TitleRow id="movies" eyebrow="MADE FOR MOVIE NIGHTS" title="Featured films" description="Real open films alongside fictional design concepts." titles={getTitlesByKind("movie")} onSelect={openTitle}/>
-        <TitleRow id="series" eyebrow="ONE MORE EPISODE" title="Series worth starting" description="Open a series to explore seasons and episodes." titles={getTitlesByKind("series")} onSelect={openTitle}/>
-        <TitleRow id="collections" eyebrow="A LITTLE DIFFERENT" title="Beyond the usual" titles={getCollection("discovery")} onSelect={openTitle}/>
-        
+      <FeaturedHero titles={catalogue.filter((item) => item.featured)} onSelect={openTitle}/>
+      <div className="home-main-content home-editorial">
+        <nav className="home-quick-filters" aria-label="Browse by category"><Link href="/explore?kind=movie">Movies</Link><Link href="/explore?kind=series">TV Series</Link><Link href="/explore?language=Hindi">Hindi</Link><Link href="/explore?language=Tamil">Tamil</Link><Link href="/explore?language=Telugu">Telugu</Link><Link href="/explore">All titles <ArrowRight size={16}/></Link></nav>
+        {continueTitles.length > 0 && <TitleRow id="continue" title="Continue Watching" titles={continueTitles} onSelect={openTitle}/>}
+        <TitleRow id="trending" title="Trending Movies" titles={[...openCinema, ...movies.filter((item) => item.mediaOrigin !== "open-film")]} onSelect={openTitle} ranked />
+        <TitleRow id="trending-tv" title="Trending TV" titles={series} onSelect={openTitle}/>
+        <ProviderStrip/>
+        <TitleRow id="bollywood" title="Hindi Movies & Series" description="Fictional Hindi-language concepts for the prototype." titles={hindi} onSelect={openTitle}/>
+        <TitleRow id="animation" title="Animation & Family" titles={animated} onSelect={openTitle}/>
+        <TitleRow id="open-cinema" title="Open Cinema · Real Films" description="Playable open films and attributed posters from Blender Studio." titles={openCinema} onSelect={openTitle}/>
+        <TitleRow id="fantasy" title="Sci-Fi & Fantasy" titles={fantasy} onSelect={openTitle}/>
+        <TitleRow id="series" title="Series to Explore" titles={series} onSelect={openTitle}/>
       </div>
     </main>
-    <footer className="site-footer"><div className="footer-grid"><div><span className="footer-brand">bharat<span>flix</span>.</span><p>Stories worth staying for.</p></div><div><strong>EXPLORE</strong><a href="#trending">Trending</a><a href="#movies">Films</a><a href="#series">Series</a></div><div><strong>DISCOVER</strong><a href="#collections">Collections</a><button type="button" onClick={openSearch}>Search titles</button></div><div><strong>PROTOTYPE</strong><p>VSPH concept demonstration with credited Blender open films and fictional showcase titles.</p></div></div><div className="footer-bottom"><span>© 2026 BharatFlix · Prototype concept</span><span>Open-film artwork credits on title pages · No commercial movie sources hosted</span></div></footer>
+    <footer className="site-footer site-footer-editorial"><div className="footer-grid"><div><span className="footer-brand">BharatFlix</span><p>A streaming platform prototype by VSPH.</p></div><div><strong>EXPLORE</strong><a href="#trending">Movies</a><a href="#trending-tv">TV</a><a href="#open-cinema">Open Cinema</a></div><div><strong>LIBRARY</strong><Link href="/explore">Browse all</Link><Link href="/my-space">My Space</Link><Link href="/admin">Demo studio</Link></div><div><strong>ABOUT THE DEMO</strong><p>Licensed open-film posters and videos appear alongside clearly labeled fictional content. Third-party service links are not content integrations.</p></div></div><div className="footer-bottom"><span>© 2026 BharatFlix · VSPH concept</span><span>Open-film licenses linked on details pages · Not a commercial streaming service</span></div></footer>
     {searchOpen && <SearchOverlay onClose={closeSearch} onSelect={openTitle}/>}
     {selected && <PreviewDialog title={selected} onClose={closePreview}/>}
   </div>;

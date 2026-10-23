@@ -31,8 +31,9 @@ test("Phase 3 creates playable film and episode routes",()=>{
 });
 test("Phase 3 video sources are allowlisted demos and credits are visible",()=>{
  assert.match(media.DEMO_MP4,/^https:\/\/interactive-examples\.mdn\.mozilla\.net\/media\/cc0-videos\//);
- assert.match(media.DEMO_YOUTUBE_ID,/^[\w-]{11}$/);
- assert.match(read("src/components/player/watch-experience.tsx"),/Big Buck Bunny/);
+ assert.match(media.LICENSED_FILM_MP4["big-buck-bunny"],/BigBuckBunny\.mp4$/);
+ assert.match(media.LICENSED_FILM_MP4["elephants-dream"],/ElephantsDream\.mp4$/);
+ assert.match(read("src/lib/demo-media.ts"),/BigBuckBunny/);
 });
 test("Phase 4 local-library parser rejects corrupt input and sanitizes entries",()=>{
  const lib=loadTs("src/lib/demo-library.ts", {react:{useMemo:()=>{},useSyncExternalStore:()=>{}}});

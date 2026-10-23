@@ -3,36 +3,68 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, AlertCircle, Clapperboard, Film, Info, PlayCircle, Youtube } from "lucide-react";
+import { ArrowLeft, ArrowRight, AlertCircle, Film, Info, ShieldCheck } from "lucide-react";
+import { Video, VideoPlayer, NeutralVideoSkin } from "@videojs/react/video";
+import "@videojs/react/video/neutral-skin.css";
 import { saveViewingProgress, useDemoLibrary } from "@/lib/demo-library";
-import { DEMO_MP4, DEMO_YOUTUBE_ID, type WatchTarget } from "@/lib/demo-media";
+import { resolvePlaybackSource, type WatchTarget } from "@/lib/demo-media";
 
-/** Native sample + official YouTube embed. No unauthorized video streams or YouTube UI overlays. */
+/** Video.js 10 native media engine + accessible neutral control skin. No YouTube iframe. */
 export function WatchExperience({ target }: { target: WatchTarget }) {
-  const [provider, setProvider] = useState<"sample" | "youtube">(target.title.youtubeId ? "youtube" : "sample");
-  const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const library = useDemoLibrary();
-  const saved = library.history.find((item) => item.id === target.id);
   const lastSave = useRef(0);
-  const heading = target.episode ? target.episode.title : target.title.title;
-  return <main className="watch-screen">
-    <header className="watch-topbar">
-      <Link href={`/title/${target.title.slug}`} className="watch-back"><ArrowLeft size={19}/> Back to title</Link>
-      <Link href="/" className="watch-wordmark">bharat<span>flix</span><b>.</b></Link>
-      <span className="watch-demo-label"><span/> INTERACTIVE DEMO</span>
-    </header>
-    <section className="watch-shell" aria-labelledby="watch-heading">
-      <div className="watch-intro"><div><span className="section-eyebrow">{target.episode ? `SEASON ${target.seasonNumber} · EPISODE ${target.episode.number}` : "FEATURE FILM"} / PREVIEW</span><h1 id="watch-heading">{heading}</h1><p>{target.title.title}{target.episode ? ` · ${target.episode.runtime}` : ` · ${target.title.runtime}`}</p></div><Link href={`/title/${target.title.slug}`} className="watch-more"><Info size={17}/> Title information</Link></div>
-      <div className="watch-cinema">
-        {provider === "sample" ? <>
-          {videoError ? <div className="watch-error"><AlertCircle size={32}/><strong>Sample video unavailable</strong><p>Check your network connection, or try the YouTube sample below.</p><button type="button" onClick={() => {setVideoError(false);videoRef.current?.load();}}>Try again</button></div> : <video key={target.id} ref={videoRef} poster={target.title.backdrop} controls playsInline preload="metadata" onLoadedMetadata={(event) => {if (saved && saved.seconds > 0 && saved.seconds < event.currentTarget.duration - 0.5) event.currentTarget.currentTime = saved.seconds;}} onTimeUpdate={(event) => {const now = Date.now(); if (now - lastSave.current > 2500 && event.currentTarget.duration > 0) {lastSave.current = now; saveViewingProgress(target.id, event.currentTarget.currentTime, event.currentTarget.duration);}}} onPause={(event) => {if (event.currentTarget.duration > 0) saveViewingProgress(target.id, event.currentTarget.currentTime, event.currentTarget.duration);}} onEnded={(event) => {if (event.currentTarget.duration > 0) saveViewingProgress(target.id, event.currentTarget.duration, event.currentTarget.duration);}} onError={() => setVideoError(true)} aria-label={`Sample clip for ${heading}`}><source src={DEMO_MP4} type="video/mp4"/>Your browser does not support HTML5 video.</video>}
-        </> : <iframe title={`${target.title.youtubeId ? target.title.title : "Big Buck Bunny"} — official YouTube embed`} loading="lazy" src={`https://www.youtube-nocookie.com/embed/${target.title.youtubeId ?? DEMO_YOUTUBE_ID}?rel=0`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />}
-        <span className="watch-overlay-label"><Clapperboard size={14}/> {provider === "youtube" && target.title.youtubeId ? "OFFICIAL OPEN FILM · YOUTUBE" : `SAMPLE FOOTAGE — NOT ${target.title.title.toUpperCase()}`}</span>
+  const [failed, setFailed] = useState(false);
+  const [retryKey, setRetryKey] = useState(0);
+  const library = useDemoLibrary();
+  const saved = library.history.find((entry) => entry.id === target.id);
+  const source = resolvePlaybackSource(target);
+  const heading = target.episode?.title ?? target.title.title;
+
+  function save(video: HTMLVideoElement, force = false) {
+    if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+    const now = Date.now();
+    if (!force && now - lastSave.current < 3500) return;
+    lastSave.current = now;
+    saveViewingProgress(target.id, video.currentTime, video.duration);
+  }
+
+  return <main className="watch-screen watch-screen-cinema">
+    <div className="watch-theater-header">
+      <Link href={`/title/${target.title.slug}`} className="watch-theater-back"><ArrowLeft size={22} aria-hidden="true"/><span>Back</span></Link>
+      <div className="watch-theater-identity"><small>{target.episode ? `S${target.seasonNumber} · E${target.episode.number}` : "NOW PLAYING"}</small><strong>{heading}</strong></div>
+      <Link href={`/title/${target.title.slug}`} className="watch-theater-info"><Info size={19} aria-hidden="true"/><span>Details</span></Link>
+    </div>
+
+    <section className="watch-theater-stage" aria-label={`Player for ${heading}`}>
+      <div className="watch-player-frame">
+        {failed ? <div className="watch-player-error" role="alert"><AlertCircle size={36}/><h1>Video unavailable</h1><p>The licensed sample could not load. Check your connection, or try reloading the player.</p><button type="button" className="button-primary" onClick={() => { setFailed(false); setRetryKey((current) => current + 1); }}>Reload player</button></div> :
+          <VideoPlayer key={`${target.id}-${retryKey}`} poster={target.title.backdrop}>
+            <NeutralVideoSkin className="bharatflix-videojs">
+              <Video
+                ref={videoRef}
+                src={source.url}
+                playsInline
+                preload="metadata"
+                onLoadedMetadata={(event) => {
+                  const v = event.currentTarget;
+                  if (saved && saved.seconds > 0 && saved.seconds < v.duration - 3) v.currentTime = saved.seconds;
+                }}
+                onTimeUpdate={(event) => save(event.currentTarget)}
+                onPause={(event) => save(event.currentTarget, true)}
+                onEnded={(event) => save(event.currentTarget, true)}
+                onError={() => setFailed(true)}
+                aria-label={`${source.fullFilm ? "Open film" : "Demo preview"}: ${heading}`}
+              />
+            </NeutralVideoSkin>
+          </VideoPlayer>}
       </div>
-      <div className="watch-provider-row"><div className="watch-tabs" role="group" aria-label="Video source"><button type="button" aria-pressed={provider === "sample"} onClick={() => {setProvider("sample");setVideoError(false);}}><PlayCircle size={17}/> Browser player</button><button type="button" aria-pressed={provider === "youtube"} onClick={() => setProvider("youtube")}><Youtube size={17}/> {target.title.youtubeId ? "Official film" : "YouTube demo"}</button></div><div className="watch-playback-note"><Info size={16}/> HTML5 playback saves progress locally. YouTube viewing progress is not yet synchronized.</div></div>
-      <div className="watch-next-row"><div><span className="section-eyebrow">UP NEXT</span><h2>{target.nextId ? "The next chapter awaits" : "Discover more stories"}</h2><p>{target.episode?.synopsis ?? target.title.synopsis}</p></div><div className="watch-next-actions">{target.previousId && <Link href={`/watch/${target.previousId}`} className="button-secondary"><ArrowLeft size={16}/> Previous episode</Link>}{target.nextId ? <Link href={`/watch/${target.nextId}`} className="button-primary">Next episode <ArrowRight size={16}/></Link> : <Link href="/explore" className="button-primary"><Film size={17}/> Explore films</Link>}</div></div>
-      <div className="watch-credits"><Image src={target.title.poster} width={52} height={76} alt=""/><div><strong>{target.title.title}</strong><p>{target.title.year} · {target.title.genres.join(" · ")}</p><small>{provider === "youtube" && target.title.youtubeId ? "Official Blender open film embedded with YouTube's native player. Artwork attribution and license on the film detail page." : "Demo clips: MDN CC0 flower / Blender Foundation Big Buck Bunny (CC BY 3.0). Embedded YouTube controls remain intact."}</small></div></div>
+      <div className="watch-under-player"><span><ShieldCheck size={15} aria-hidden="true"/>{source.fullFilm ? "Licensed open film" : "Sample footage · not the selected title"}</span><span>Playback progress saved to this browser</span></div>
     </section>
+
+    <section className="watch-content-below" aria-label="Viewing information">
+      <div className="watch-content-summary"><span className="section-eyebrow">BHARATFLIX PLAYER</span><h1>{heading}</h1><p>{target.title.title}{target.episode ? ` · S${target.seasonNumber}E${target.episode.number}` : ""} · {target.title.year} · {target.title.runtime}</p><small>{source.credit}</small></div>
+      <div className="watch-content-actions">{target.previousId && <Link href={`/watch/${target.previousId}`} className="button-secondary"><ArrowLeft size={17}/> Previous episode</Link>}{target.nextId ? <Link href={`/watch/${target.nextId}`} className="button-primary">Next episode <ArrowRight size={18}/></Link> : <Link href="/explore" className="button-secondary"><Film size={17}/> Explore titles</Link>}</div>
+    </section>
+    <div className="watch-related-title"><Image src={target.title.poster} alt="" width={44} height={66}/><div><strong>{target.title.title}</strong><p>{target.title.synopsis}</p></div><Link href={`/title/${target.title.slug}`}>View title <ArrowRight size={15}/></Link></div>
   </main>;
 }

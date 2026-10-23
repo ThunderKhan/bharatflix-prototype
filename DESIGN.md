@@ -1,95 +1,71 @@
 ---
-name: BharatFlix Nocturne Cinema
-version: 1.0.0
-status: prototype
-inspiration:
-  - https://github.com/google-labs-code/design.md/blob/main/docs/spec.md
-  - https://github.com/stella/stella/blob/main/DESIGN.md
+name: BharatFlix · Editorial Cinema
+version: "2.0"
+description: Dark, media-first OTT browsing and immersive playback. Original BharatFlix identity.
 colors:
-  background: "#080C10"
-  surface: "#12181F"
-  surfaceRaised: "#1B232C"
-  textPrimary: "#F5F3EC"
-  textMuted: "#AAB2BB"
-  textSubtle: "#818C98"
-  accent: "#D8B47B"
-  accentHover: "#EACB98"
-  accentPressed: "#B88D55"
-  outline: "rgba(240,236,227,0.13)"
-  focus: "#F3D49A"
+  background: "#080A0D"
+  surface: "#15181D"
+  surfaceRaised: "#1E242B"
+  primary: "#F7F8FA"
+  secondary: "#A4ACB8"
+  accent: "#92B9D3"
+  accentHover: "#B2D2E4"
+  outline: "rgba(255,255,255,0.13)"
+  focus: "#DCECF5"
 typography:
-  fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
-  displayWeight: 750
-  bodyWeight: 400
-  labelWeight: 750
-spacing:
-  base: 4px
-  pageGutter: "clamp(20px, 5.2vw, 88px)"
+  heading:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "32px"
+    fontWeight: 700
+    lineHeight: 1.15
+  body:
+    fontFamily: "Inter, system-ui, sans-serif"
+    fontSize: "14px"
+    fontWeight: 400
+    lineHeight: 1.5
 rounded:
-  card: 10px
-  control: 8px
-  pill: 999px
-motion:
-  durationFast: 150ms
-  durationRegular: 240ms
-  easing: "cubic-bezier(.2,.8,.2,1)"
+  card: "5px"
+  controls: "6px"
+spacing:
+  sm: "8px"
+  md: "16px"
+  lg: "24px"
+  gutter: "clamp(18px, 4vw, 64px)"
 ---
 
-# BharatFlix · DESIGN.md
+# BharatFlix Editorial Cinema · Design System
 
 ## Overview
-**Nocturne Cinema:** gallery-grade restraint, cinematic scale, editorial hierarchy. The artwork is the star; interface chrome recedes behind it. Inspired by OTT content rails and language-first browsing, not by any third-party branding. Matte near-black, neutral slate panels, and restrained champagne accents project an upscale service.
+Use the content-dense browsing hierarchy seen in established OTT platforms: compact persistent navigation, a full-bleed feature hero, immediate movie/TV shelves, dense landscape or portrait cards, and dedicated series/movie detail pages. Stop using decorative promotional slogans, oversized empty spaces, abstract gradient banners, fake metrics and gradients in place of posters. One key art image is the primary visual event in each section.
 
-Do not use violet/purple neon, decorative gradients, gradient-only pseudo-posters, fake ratings for released films or excessive frosted-glass effects.
+**Reference pattern:** [Netflix design-system study](https://github.com/ndroussi/design-md-for-ai/blob/main/design-md/netflix/DESIGN.md) and [Google DESIGN.md specification](https://github.com/google-labs-code/design.md/blob/main/docs/spec.md). This is an original adaptation for BharatFlix, not a copy of Netflix's brand, trademark, custom font, or copyrighted artwork.
 
 ## Colors
-| Token | Value | Role |
-| --- | --- | --- |
-| Background | `#080C10` | Neutral base |
-| Surface | `#12181F` | Panels, dialogs and CMS sidebar |
-| Raised | `#1B232C` | Hover and raised cards |
-| Text | `#F5F3EC` | Primary text |
-| Muted | `#AAB2BB` | Supporting text |
-| Subtle | `#818C98` | Tertiary metadata |
-| Champagne | `#D8B47B` | Calls to action and selected states |
-| Hover | `#EACB98` | Hover states |
-| Outline | `rgba(240,236,227,.13)` | Quiet separation |
-
-Use gold sparingly. Gold text on near-black identifies selected controls; body copy is warm white. Preserve image colors and use dark overlays only for legibility.
+Near-black `#080A0D` is the canvas; charcoal `#15181D` is the surface; `#F7F8FA` is primary text. Use cool silver `#A4ACB8` for metadata. Desaturated ice blue `#92B9D3` is reserved for focus, selected filters and navigation, not massive CTA fills. Primary play CTAs should be warm-white with dark text. **No purple gradients, glows, glass cards, champagne-gold decorative bars, pink accents or abstract poster art.** Dark-to-transparent scrims over real key art are allowed for legibility.
 
 ## Typography
-- Inter when available, followed by system UI fonts; no external font dependency.
-- Hero display 56–104px desktop / 40–64px mobile, section titles 26–38px.
-- Body 14–16px at line height ≥1.5. Label caps 10–12px with tracking.
-- One primary headline and supporting line; avoid multiple competing badge labels.
+Product UI uses system/Inter with consistent 600–750 headline weight; hero 48–84px, shelf headings 22–28px, card labels 13–15px, metadata 11–13px. Avoid eyebrow label + huge headline + ornamental subtitle on every shelf. Favor concise, factual labels: Trending Movies, Trending TV, Hindi Movies & Series, Animation & Family, Open Cinema.
 
 ## Layout
-- Max 1710px canvas, gutters `clamp(20px,5.2vw,88px)`.
-- Consistent 2:3 poster rails, intentional whitespace, 44px interactive targets.
-- Responsive mobile across 390/730/1040/1220px; preserve keyboard scrolling.
+Maximum content canvas 1600px, adaptive gutter 18–64px. Navigation 66px. Hero is 66–72vh on desktop, 560px minimum, using real film artwork and bottom scrim. First content shelf follows hero immediately. Poster rails use 2:3 art with compact gaps (12–16px), minimum visible density around 7 posters on 1440px desktop; horizontal overflow and scroll arrows remain available. On mobile, horizontal rails remain scrollable, with 132–155px posters. Use touch targets at least 44px.
 
 ## Elevation & Depth
-- Matte surfaces with fine borders and minimal shadows.
-- No decorative gradients, purple glow, floating orbs, or abstract SVG film art.
-- Allowed: dark-to-transparent scrims over authentic film imagery for text contrast.
+No floating glass surfaces or ornamental cards. Subtle borders; shadows only for hovered poster lift and player menus. Images carry atmospheric color; the rest of the UI should be visually quiet.
 
 ## Shapes
-8px controls, 10px cards, 14px large editorial containers; understated scale ≤1.02; reduced-motion accessibility.
+Card radius 5px; control radius 6px. Hover lifts limited to 1–2% scale. Hero controls and navigation use clear geometry and 200ms motion; respect `prefers-reduced-motion`.
 
 ## Components
-- **Nav:** clear location, active state, search, My Space.
-- **Hero:** authentic film art or illustrative photo, editorial title, metadata, one primary and one secondary CTA.
-- **Movie cards:** real open-film poster remains intact; fictional demo entries use real photos with HTML title overlay and explicit concept labeling.
-- **Explore:** accessible type/genre/language/year filters and sort.
-- **Detail:** film licenses and concept-photo credits on relevant pages.
-- **Player:** respect embedded platform controls and media-rights terms.
-- **My Space:** neutral cards, progress bars in champagne.
-- **Admin:** same design tokens without altering CMS state or colleague-owned backend logic.
+- Header: BharatFlix wordmark, Movies, TV Shows, Open Cinema, My Space; search and user icon; do not put operator controls in the principal viewer navigation.
+- Hero: real licensable backdrop, single film title, essential metadata, Watch or Preview CTA, More Info CTA. No blank hero fallback.
+- Poster rails: compact editorial titles, true local artwork or attributed remote imagery, readable metadata, keyboard scroll support.
+- Provider discovery: text-link directory to official Netflix, Prime Video, Disney+, JioHotstar and Tata Play Binge pages. **Never suggest the displayed sample films belong to those services.** No third-party service embeds.
+- Player: use the open-source Video.js 10 React preset `NeutralVideoSkin`, with real HTML5 video, seek/scrub, volume, captions-ready UI, playback rate, fullscreen, keyboard interaction and saved progress. Avoid third-party video-embed chrome. Show a visible source/rights label below the player.
+- Detail & search: keep accessible filters and licensed image credits; avoid fabricated scores for open films and concepts.
+- My Space: simple library cards and viewing progress; CMS: existing demo behavior and shared tokens only, colleague owns CMS integration.
 
 ## Do's and Don'ts
-Do: use verified source links, credit photographs, distinguish fictional concepts, retain semantic headings and focus states, test mobile.
+Do: display real open-film posters and artwork credits; label fictional demos clearly; check embed/network failures; preserve source links; verify playback CORS and buffering; ensure deterministic fallback UI. Don't: copy Netflix/Prime Video logos, imply affiliations, stream copyrighted catalogues without rights, hide sample-media mismatch, use unsourced poster images, or alter CMS data APIs during design work.
 
-Don't: imply stock photography is an actual film poster, use unlicensed commercial assets, obscure rights, use magenta/purple gradients, or invent commercial catalog access.
-
-## Implementation Contract
-`src/app/globals.css` is the appearance source of truth. This `DESIGN.md` defines its tokens, hierarchy, and component behavior. CMS contributors should use shared CSS variables but keep functionality changes in separate feature branches. The application remains a prototype, not a production streaming service.
+## Collaboration / Implementation
+All viewer UI reads `src/app/globals.css` tokens; keep component CSS consistent with this document. CMS feature development stays on its own branch. Public prototype assets and film streams require source attribution; when a remote media URL breaks, replace with a rights-cleared local copy after confirmation. Real deployment requires content licensing and production-grade authentication/media handling.

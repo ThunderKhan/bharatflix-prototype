@@ -1,14 +1,22 @@
-# Phase 3 — Video playback (demo)
+# Phase 3 — Native OTT playback (editorial revision)
 
 ## Delivered
-- `/watch/[id]` routes for fictional films and all 14 fictional episodes.
-- HTML5 video controls with MDN CC0 flower sample (short clip) and official YouTube iframe with Big Buck Bunny sample.
-- Series previous/next episode actions, heading metadata, missing-ID 404, title navigation, mobile player layout, network error fallback.
-- No copyrighted movie source from aggregators; no disguised/misrepresented sample footage.
+- `/watch/[id]` routes for open films and all 14 fictional series episodes.
+- **Video.js 10 React `NeutralVideoSkin`** over a native HTML5 `<video>` element: no YouTube embeds or third-party video-player branding.
+- Seek, volume, fullscreen, rate and text-track-ready controls provided by Video.js; progress persists locally.
+- Previous/next episode navigation, accessible playback errors, and in-player title information.
 
-## Media provenance
-- MDN CC0 flower sample: https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4
-- Blender Foundation Big Buck Bunny: https://peach.blender.org/about/ (CC BY 3.0); YouTube public embed `aqz-KE-bpKQ` (embedding availability depends on publisher).
+## Licensed sample streams
+- *Big Buck Bunny* — full Blender Foundation open film (CC BY 3.0): https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4; filmmaker source https://studio.blender.org/projects/big-buck-bunny/.
+- *Elephants Dream* — Blender Foundation open film: https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4; filmmaker source https://studio.blender.org/projects/elephants-dream/.
+- Other title routes — **clearly labeled unrelated** CC0 flower sample: https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4.
 
-## Limits
-This is a product demo, not DRM/paywall/production streaming. Playback is hosted by the original provider; no content rights for any fictional title are implied. YouTube's own player controls and ads are not modified.
+## Acceptance checks
+1. Player controls are present without any iframe.
+2. Play/pause, seek, volume, fullscreen and keyboard interactions work in the target browser.
+3. Exit and re-enter a title; previously saved progress resumes.
+4. Navigate previous/next episode without losing the correct title context.
+5. Simulate a media-loading failure and verify recovery UI.
+
+## Limitations
+A prototype, not DRM, paid streaming, licensed commercial catalogue, secured playback or cloud transcoding. Video.js player UI and remote MP4 availability still need live-browser and network verification. Preview stream availability may change.
