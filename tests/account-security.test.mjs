@@ -51,7 +51,7 @@ test('login return paths prohibit offsite and protocol-relative redirects',()=>{
  assert.equal(redirects.safeNextPath('/\\evil'),'/my-space');
 });
 test('admin page and user API gate access with actual sessions and role checks',()=>{
- assert.match(read('src/app/admin/page.tsx'),/currentAccount\(\)/);
+ assert.match(read('src/app/admin/(dashboard)/layout.tsx'),/requireOperator\(\)/);
  assert.match(read('src/app/admin/users/page.tsx'),/user\.role\s*!==\s*"superadmin"/);
  assert.match(read('src/app/api/admin/users/route.ts'),/allowRoles\("superadmin"\)/);
  assert.match(read('src/lib/account-http.ts'),/x-bharatflix-action/);

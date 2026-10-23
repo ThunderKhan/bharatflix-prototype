@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { Bookmark, Clock3, Film, Heart, Play, RotateCcw, Trash2, UserRound } from "lucide-react";
 import { DiscoveryShell } from "@/components/discovery/discovery-shell";
-import { titles } from "@/lib/catalog";
+import { useCatalog } from "@/lib/catalog-context";
 import { getWatchTarget } from "@/lib/demo-media";
 import { removeViewerHistory, resetViewerLibrary, toggleViewerWatchlist, useViewerLibrary } from "@/lib/viewer-library";
 export function MySpaceExperience() {
-  const { library,account } = useViewerLibrary();
-  const favorites = useMemo(() => library.watchlist.map((slug) => titles.find((t) => t.slug === slug)).filter((v) => v !== undefined), [library.watchlist]);
-  const history = useMemo(() => library.history.map((entry) => ({ entry, target: getWatchTarget(entry.id) })).filter((x) => x.target !== undefined), [library.history]);
+  const catalog = useCatalog();
+  const { library, account } = useViewerLibrary();
+  const favorites = useMemo(() => library.watchlist.map((slug) => catalog.titles.find((t) => t.slug === slug)).filter((v) => v !== undefined), [library.watchlist, catalog.titles]);
+  const history = useMemo(() => library.history.map((entry) => ({ entry, target: getWatchTarget(catalog, entry.id) })).filter((x) => x.target !== undefined), [library.history, catalog]);
   return <DiscoveryShell><main className="space-page">
     <div className="space-hero"><div className="space-avatar"><UserRound size={35}/></div><div><span className="section-eyebrow">YOUR PERSONAL CORNER</span><h1>My Space<span>.</span></h1><p>Your picks, your pace. Your watchlist and playback progress stay with your account on this demo server.</p></div><span className="space-demo-pill">{account?.name ?? "VIEWER PROFILE"}</span></div>
     <div className="space-summary"><div><Heart size={21}/><strong>{favorites.length}</strong><span>Saved titles</span></div><div><Clock3 size={21}/><strong>{history.length}</strong><span>Recently played</span></div><div><Bookmark size={21}/><strong>Private</strong><span>Account library</span></div></div>

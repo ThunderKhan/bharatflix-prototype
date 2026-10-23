@@ -45,3 +45,27 @@ export interface Season {
   name: string;
   episodes: Episode[];
 }
+
+/**
+ * Everything a viewer page needs, assembled server-side from the catalogue
+ * database. `seasonsBySlug` / `castBySlug` only carry keys for titles that
+ * actually have seasons or cast.
+ */
+export interface CatalogSnapshot {
+  titles: MediaTitle[];
+  seasonsBySlug: Record<string, Season[]>;
+  castBySlug: Record<string, string[]>;
+}
+
+/** A homepage carousel row as configured in the CMS. */
+export interface HomeRow {
+  id: string;
+  key: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  sourceType: "collection" | "kind" | "manual";
+  sourceValue: string;
+  ranked: boolean;
+  position: number;
+}

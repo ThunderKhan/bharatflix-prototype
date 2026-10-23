@@ -16,18 +16,16 @@ function loadTs(relative, mocks={}) {
 }
 const titles = JSON.parse(read("src/data/catalog.json"));
 const episodes = JSON.parse(read("src/data/episodes.json"));
-const catalogue = {
- titles,
- getSeasonsForTitle:(slug)=>episodes[slug]||[]
-};
-const media = loadTs("src/lib/demo-media.ts", {"@/lib/catalog":catalogue});
+const credits = JSON.parse(read("src/data/credits.json"));
+const snapshot = { titles, seasonsBySlug: episodes, castBySlug: credits };
+const media = loadTs("src/lib/demo-media.ts");
 
 test("Phase 3 creates playable film and episode routes",()=>{
- const all=media.listWatchTargets();
+ const all=media.listWatchTargets(snapshot);
  assert.equal(all.length,titles.filter(x=>x.kind==="movie").length+Object.values(episodes).flat().reduce((n,s)=>n+s.episodes.length,0));
- for(const target of all)assert.equal(media.getWatchTarget(target.id).id,target.id);
- assert.equal(media.getWatchTarget("arbitrary-id"),undefined);
- assert.ok(media.getWatchTarget("parallel-s1e1")?.nextId);
+ for(const target of all)assert.equal(media.getWatchTarget(snapshot, target.id).id,target.id);
+ assert.equal(media.getWatchTarget(snapshot, "arbitrary-id"),undefined);
+ assert.ok(media.getWatchTarget(snapshot, "parallel-s1e1")?.nextId);
 });
 test("Phase 3 video sources are allowlisted demos and credits are visible",()=>{
  assert.match(media.DEMO_MP4,/^https:\/\/interactive-examples\.mdn\.mozilla\.net\/media\/cc0-videos\//);
@@ -43,15 +41,16 @@ test("Phase 4 local-library parser rejects corrupt input and sanitizes entries",
  assert.equal(x.history.length,1);
 });
 test("Phase 5 CMS applies edits to sample catalogue and excludes unpublished titles",()=>{
- const cms=loadTs("src/lib/demo-cms.ts", {react:{useMemo:()=>{},useSyncExternalStore:()=>{}},"@/lib/catalog":{titles}});
- const base= cms.applyCMS({edits:[],created:[]});
+ const react={useMemo:()=>{},useSyncExternalStore:()=>{}};react.useContext=()=>({titles,seasonsBySlug:{},castBySlug:{}});
+ const cms=loadTs("src/lib/demo-cms.ts", {react,"@/lib/catalog-context":{useCatalog:()=>({titles,seasonsBySlug:{},castBySlug:{}})}});
+ const base= cms.applyCMS({edits:[],created:[]}, titles);
  assert.equal(base.published.length,titles.length);
  const first=titles[0];
- const after=cms.applyCMS({edits:[{slug:first.slug,title:"Editorial title",synopsis:"Example editorial text",published:false,featured:true}],created:[]});
+ const after=cms.applyCMS({edits:[{slug:first.slug,title:"Editorial title",synopsis:"Example editorial text",published:false,featured:true}],created:[]}, titles);
  assert.equal(after.all[0].title,"Editorial title");
  assert.equal(after.published.length,titles.length-1);
  assert.equal(titles[0].title,first.title);
 });
 test("all three demo pages and review docs exist",()=>{
- for(const target of ["src/app/watch/[id]/page.tsx","src/app/my-space/page.tsx","src/app/admin/page.tsx","docs/PHASE_03_REVIEW.md","docs/PHASE_04_REVIEW.md","docs/PHASE_05_REVIEW.md"])assert.ok(fs.existsSync(path.join(root,target)),target);
+ for(const target of ["src/app/watch/[id]/page.tsx","src/app/my-space/page.tsx","src/app/admin/(dashboard)/page.tsx","src/app/admin/login/page.tsx","docs/PHASE_03_REVIEW.md","docs/PHASE_04_REVIEW.md","docs/PHASE_05_REVIEW.md"])assert.ok(fs.existsSync(path.join(root,target)),target);
 });

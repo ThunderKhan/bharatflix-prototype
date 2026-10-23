@@ -1,8 +1,16 @@
 "use client";
 
 import { useMemo, useSyncExternalStore } from "react";
-import { titles as seed } from "@/lib/catalog";
+import { useCatalog } from "@/lib/catalog-context";
 import type { MediaKind, MediaTitle } from "@/types/media";
+
+/**
+ * Browser-local demo overlay (Phase 5 of the original prototype).
+ *
+ * It layers per-browser edits and drafts on top of whatever catalogue snapshot
+ * the server supplied. The real CMS writes to SQLite; this overlay stays until
+ * the studio is ported to server actions.
+ */
 
 const KEY = "bharatflix:cms:v1";
 const EVENT = "bharatflix:cms-change";
@@ -32,7 +40,8 @@ export function parseCMS(raw: string | null): DemoCMS {
 const subscribe = (fn: () => void) => { window.addEventListener(EVENT,fn);window.addEventListener("storage",fn);return()=>{window.removeEventListener(EVENT,fn);window.removeEventListener("storage",fn);}; };
 const snapshot = () => typeof window === "undefined" ? "" : localStorage.getItem(KEY) || "";
 const serverSnapshot = () => "";
-export function applyCMS(data: DemoCMS): { all: MediaTitle[]; published: MediaTitle[] } {
+
+export function applyCMS(data: DemoCMS, seed: MediaTitle[]): { all: MediaTitle[]; published: MediaTitle[] } {
   const edits = new Map(data.edits.map((x) => [x.slug,x]));
   const all = [...seed, ...data.created].map((title) => {
     const edit = edits.get(title.slug);
@@ -40,27 +49,33 @@ export function applyCMS(data: DemoCMS): { all: MediaTitle[]; published: MediaTi
   });
   return { all, published: all.filter((title) => edits.get(title.slug)?.published !== false) };
 }
+
 export function useDemoCMS() {
+  const { titles: seed } = useCatalog();
   const raw = useSyncExternalStore(subscribe, snapshot, serverSnapshot);
   const cms = useMemo(() => parseCMS(raw),[raw]);
-  return { cms, ...useMemo(() => applyCMS(cms),[cms]) };
+  return { cms, ...useMemo(() => applyCMS(cms, seed),[cms, seed]) };
 }
+
 function change(fn: (state: DemoCMS) => DemoCMS) {
   if (typeof window === "undefined") return;
   try {localStorage.setItem(KEY, JSON.stringify(fn(parseCMS(localStorage.getItem(KEY)))));window.dispatchEvent(new Event(EVENT));} catch {/* browser storage may be disabled */}
 }
+
 export function editDemoTitle(item: ManagedItem) {
   if (!/^[a-z0-9-]{1,100}$/.test(item.slug) || !item.title.trim() || item.title.length > 120 || item.synopsis.length > 1500) return;
   change((data) => ({...data,edits:[...data.edits.filter((x)=>x.slug!==item.slug),item]}));
 }
-export function createDemoTitle(details: { title: string; synopsis: string; kind: MediaKind }) {
+
+export function createDemoTitle(details: { title: string; synopsis: string; kind: MediaKind }, seed: MediaTitle[]) {
   const title = details.title.trim().slice(0,120),synopsis = details.synopsis.trim().slice(0,1500);
   if (title.length < 3 || synopsis.length < 15) return false;
   const reference = seed.find((item) => item.kind === details.kind) ?? seed[0];
+  if (!reference) return false;
   const slug = `demo-${title.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,48)}-${Date.now().toString(36)}`;
   const created: MediaTitle = { ...reference, id: slug, slug, title, synopsis, tagline: "A new fictional demo title", kind: details.kind, year: 2026, runtime: details.kind === "movie" ? "Preview" : "Series concept", featured:false, collection:["discovery"], rating:0, badge:"NEW CONCEPT" };
   change((data) => ({ created:[...data.created,created].slice(-40),edits:[...data.edits,{slug,title,synopsis,featured:false,published:false}] }));
   return true;
 }
+
 export function resetDemoCMS() { change(() => ({ edits:[],created:[] })); }
-export function isSamplePlayable(slug: string): boolean { return seed.some((item) => item.slug === slug); }

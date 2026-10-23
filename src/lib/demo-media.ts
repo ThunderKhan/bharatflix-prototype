@@ -1,5 +1,4 @@
-import { titles, getSeasonsForTitle } from "@/lib/catalog";
-import type { MediaTitle, Episode } from "@/types/media";
+import type { CatalogSnapshot, Episode, MediaTitle } from "@/types/media";
 
 /** Only externally hosted, rights-cleared sample clips. Fictional titles do not represent these videos. */
 export const DEMO_MP4 = "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
@@ -35,10 +34,15 @@ export type WatchTarget = {
   previousId?: string;
 };
 
-export function listWatchTargets(): WatchTarget[] {
-  return titles.flatMap((title) => {
+/**
+ * Watch targets (a film, or one episode of a series) derived from a catalogue
+ * snapshot. Pure functions: the caller decides whether the snapshot came from
+ * the database or the JSON fixture.
+ */
+export function listWatchTargets(snapshot: CatalogSnapshot): WatchTarget[] {
+  return snapshot.titles.flatMap((title) => {
     if (title.kind === "movie") return [{ id: title.slug, title }];
-    const flattened = getSeasonsForTitle(title.slug).flatMap((season) => season.episodes.map((episode) => ({
+    const flattened = (snapshot.seasonsBySlug[title.slug] ?? []).flatMap((season) => season.episodes.map((episode) => ({
       id: episode.id, title, episode, seasonNumber: season.number,
     })));
     return flattened.map((entry, index) => ({
@@ -47,10 +51,10 @@ export function listWatchTargets(): WatchTarget[] {
   });
 }
 
-export function getWatchTarget(id: string): WatchTarget | undefined {
-  return listWatchTargets().find((entry) => entry.id === id);
+export function getWatchTarget(snapshot: CatalogSnapshot, id: string): WatchTarget | undefined {
+  return listWatchTargets(snapshot).find((entry) => entry.id === id);
 }
 
-export function getFirstWatchId(title: MediaTitle): string {
-  return title.kind === "series" ? getSeasonsForTitle(title.slug)[0]?.episodes[0]?.id ?? title.slug : title.slug;
+export function getFirstWatchId(snapshot: CatalogSnapshot, title: MediaTitle): string {
+  return title.kind === "series" ? (snapshot.seasonsBySlug[title.slug]?.[0]?.episodes[0]?.id ?? title.slug) : title.slug;
 }

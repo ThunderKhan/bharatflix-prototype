@@ -2,7 +2,8 @@
 
 import { Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useDemoCMS } from "@/lib/demo-cms";
+import { useCatalog } from "@/lib/catalog-context";
+import { searchTitles } from "@/lib/catalog";
 import type { MediaTitle } from "@/types/media";
 
 interface Props { onClose: () => void; onSelect: (title: MediaTitle) => void; }
@@ -10,9 +11,9 @@ interface Props { onClose: () => void; onSelect: (title: MediaTitle) => void; }
 export function SearchOverlay({ onClose, onSelect }: Props) {
   const [query, setQuery] = useState("");
   const input = useRef<HTMLInputElement>(null);
-  const { published } = useDemoCMS();
+  const { titles: published } = useCatalog();
   const term = query.trim().toLowerCase();
-  const results = term ? published.filter((title) => [title.title, title.tagline, title.synopsis, title.language, ...title.genres].some((text) => text.toLowerCase().includes(term))) : [];
+  const results = term ? searchTitles(published, term) : [];
   useEffect(() => {
     input.current?.focus();
     const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };

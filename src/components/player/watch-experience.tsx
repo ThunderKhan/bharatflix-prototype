@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +31,7 @@ export function WatchExperience({ target }: { target: WatchTarget }) {
   return <main className="watch-screen watch-screen-cinema">
     <div className="watch-theater-header">
       <Link href={`/title/${target.title.slug}`} className="watch-theater-back"><ArrowLeft size={22} aria-hidden="true"/><span>Back</span></Link>
-      <div className="watch-theater-identity"><small>{target.episode ? `S${target.seasonNumber} · E${target.episode.number}` : "NOW PLAYING"}</small><strong>{heading}</strong></div>
+      <div className="watch-theater-identity"><small>{target.episode ? `S${target.seasonNumber} Â· E${target.episode.number}` : "NOW PLAYING"}</small><strong>{heading}</strong></div>
       <Link href={`/title/${target.title.slug}`} className="watch-theater-info"><Info size={19} aria-hidden="true"/><span>Details</span></Link>
     </div>
 
@@ -58,11 +58,13 @@ export function WatchExperience({ target }: { target: WatchTarget }) {
             </NeutralVideoSkin>
           </VideoPlayer>}
       </div>
-      <div className="watch-under-player"><span><ShieldCheck size={15} aria-hidden="true"/>{source.fullFilm ? "Licensed open film" : "Sample footage · not the selected title"}</span><span>{account ? "Progress saved to your account" : "Sign in to save progress across sessions"}</span></div>
+      <div className="watch-under-player"><span><ShieldCheck size={15} aria-hidden="true"/>{source.fullFilm ? "Licensed open film" : "Sample footage Â· not the selected title"}</span><span>{account ? "Progress saved to your account" : "Sign in to save progress across sessions"}</span></div>
+      <div className="watch-next-row"><div><span className="section-eyebrow">UP NEXT</span><h2>{target.nextId ? "The next chapter awaits" : "Discover more stories"}</h2><p>{target.episode?.synopsis ?? target.title.synopsis}</p></div><div className="watch-next-actions">{target.previousId && <Link href={`/watch/${target.previousId}`} className="button-secondary"><ArrowLeft size={16}/> Previous episode</Link>}{target.nextId ? <Link href={`/watch/${target.nextId}`} className="button-primary">Next episode <ArrowRight size={16}/></Link> : <Link href="/explore" className="button-primary"><Film size={17}/> Explore films</Link>}</div></div>
+      <div className="watch-credits"><Image src={target.title.poster} width={52} height={76} alt=""/><div><strong>{target.title.title}</strong><p>{target.title.year} Â· {target.title.genres.join(" Â· ")}</p><small>Video credits: MDN CC0 flower sample / Blender Foundation, Big Buck Bunny (CC BY 3.0). YouTube&apos;s native interface is maintained.</small></div></div>
     </section>
 
     <section className="watch-content-below" aria-label="Viewing information">
-      <div className="watch-content-summary"><span className="section-eyebrow">BHARATFLIX PLAYER</span><h1>{heading}</h1><p>{target.title.title}{target.episode ? ` · S${target.seasonNumber}E${target.episode.number}` : ""} · {target.title.year} · {target.title.runtime}</p><small>{source.credit}</small></div>
+      <div className="watch-content-summary"><span className="section-eyebrow">BHARATFLIX PLAYER</span><h1>{heading}</h1><p>{target.title.title}{target.episode ? ` Â· S${target.seasonNumber}E${target.episode.number}` : ""} Â· {target.title.year} Â· {target.title.runtime}</p><small>{source.credit}</small></div>
       <div className="watch-content-actions">{target.previousId && <Link href={`/watch/${target.previousId}`} className="button-secondary"><ArrowLeft size={17}/> Previous episode</Link>}{target.nextId ? <Link href={`/watch/${target.nextId}`} className="button-primary">Next episode <ArrowRight size={18}/></Link> : <Link href="/explore" className="button-secondary"><Film size={17}/> Explore titles</Link>}</div>
     </section>
     <div className="watch-related-title"><Image src={target.title.poster} alt="" width={44} height={66}/><div><strong>{target.title.title}</strong><p>{target.title.synopsis}</p></div><Link href={`/title/${target.title.slug}`}>View title <ArrowRight size={15}/></Link></div>

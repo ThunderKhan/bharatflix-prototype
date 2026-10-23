@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowUpRight, Clapperboard, X } from "lucide-react";
 import { useEffect } from "react";
 import type { MediaTitle } from "@/types/media";
-import { getFirstWatchId } from "@/lib/demo-media";
 
 interface Props { title: MediaTitle; onClose: () => void; }
 

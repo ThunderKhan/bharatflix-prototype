@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { useDemoCMS } from "@/lib/demo-cms";
+import { useCatalog } from "@/lib/catalog-context";
 import { useViewerLibrary } from "@/lib/viewer-library";
 import { getWatchTarget } from "@/lib/demo-media";
 import type { MediaTitle } from "@/types/media";
@@ -15,9 +15,10 @@ import { SiteHeader } from "./site-header";
 import { TitleRow } from "./title-row";
 
 export function HomeExperience() {
-  const { published: catalogue } = useDemoCMS();
+  const catalog = useCatalog();
+  const { titles: catalogue } = catalog;
   const { library } = useViewerLibrary();
-  const continueTitles = library.history.map((entry) => getWatchTarget(entry.id)?.title).filter((item): item is MediaTitle => Boolean(item)).filter((item, index, array) => array.findIndex((other) => other.slug === item.slug) === index);
+  const continueTitles = library.history.map((entry) => getWatchTarget(catalog, entry.id)?.title).filter((item): item is MediaTitle => Boolean(item)).filter((item, index, array) => array.findIndex((other) => other.slug === item.slug) === index);
   const [searchOpen, setSearchOpen] = useState(false);
   const [selected, setSelected] = useState<MediaTitle | null>(null);
   const openSearch = useCallback(() => setSearchOpen(true), []);
