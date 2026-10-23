@@ -120,6 +120,6 @@ export function queueIntake(slug: string, asset: IntakeTask["asset"]) {
 }
 export function completeIntake(id: string) {
   if (!isSlug(id)) return;
-  update((state) => log({ ...state, intakes: state.intakes.map((x) => x.id === id ? { ...x, status: "reviewed" } : x) }, `Reviewed intake task ${id}`));
+  update((state) => log({ ...state, intakes: state.intakes.map((x) => x.id === id ? { ...x, status: "reviewed" as const } : x) }, `Reviewed intake task ${id}`));
 }
 export function resetDemoOperations() { update(() => ({ ...emptyOperations })); }
