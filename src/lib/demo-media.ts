@@ -3,7 +3,28 @@ import type { MediaTitle, Episode } from "@/types/media";
 
 /** Only externally hosted, rights-cleared sample clips. Fictional titles do not represent these videos. */
 export const DEMO_MP4 = "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
-export const DEMO_YOUTUBE_ID = "aqz-KE-bpKQ"; // Big Buck Bunny, Blender Foundation, CC BY 3.0
+/** True films, not embedded video platforms. Sources are freely viewable Blender open films.
+ * The other titles use the explicitly labelled CC0 technical sample, never misrepresented
+ * as the fictional movie or the full Blender film.
+ */
+export const LICENSED_FILM_MP4: Readonly<Record<string, string>> = {
+  "big-buck-bunny": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "elephants-dream": "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+};
+
+export function resolvePlaybackSource(target: WatchTarget): { url: string; fullFilm: boolean; credit: string } {
+  const filmUrl = target.title.kind === "movie" ? LICENSED_FILM_MP4[target.title.slug] : undefined;
+  if (filmUrl) return {
+    url: filmUrl,
+    fullFilm: true,
+    credit: `${target.title.title} — Blender Foundation open film; see the film detail page for license and artwork attribution.`,
+  };
+  return {
+    url: DEMO_MP4,
+    fullFilm: false,
+    credit: "CC0 flower sample footage (MDN). This is a technical player demo, not the selected title.",
+  };
+}
 
 export type WatchTarget = {
   id: string;

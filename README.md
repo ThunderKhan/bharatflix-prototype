@@ -2,7 +2,7 @@
 
 An original **BharatFlix** (without an H) concept prototype for a six-page streaming experience, developed across five reviewable phases. The project starts from a clean repository and selectively adapts MIT-licensed open-source UI components.
 
-> **Prototype only.** The catalogue titles and artwork are fictional. No unauthorized movie sources, scraped streaming providers, or commercial video content are included. Public access to the website is not required for testing.
+> **Prototype only.** The demo mixes credited Blender open films with clearly labeled fictional concepts. No unauthorized movie sources, scraped streaming providers, or commercial video streams are included. Public access to the website is not required for testing.
 
 ## Roadmap
 
@@ -10,7 +10,7 @@ An original **BharatFlix** (without an H) concept prototype for a six-page strea
 |---|---|---|
 | **01 — Foundation & Homepage** | Next.js/TypeScript, design tokens, fictional catalogue, responsive navigation, featured hero, carousels, search overlay and title preview | A polished, navigable homepage (this PR) |
 | **02 — Discovery & Details** | `/explore`, `/title/[slug]`; working filters, movie and series details, season/episode data | Visitors find and inspect a title |
-| **03 — Playback** | `/watch/[id]`; official YouTube IFrame API for authorized embeddable clips, optional sample MP4, playback controls, episode progression | Playable demonstration with graceful errors |
+| **03 — Playback** | `/watch/[id]`; Video.js 10 native HTML5 streaming controls, licensed open-film MP4s, honest sample fallback, episode progression | Playable demonstration with graceful errors |
 | **04 — Personal Experience** | `/my-space`; watchlist, continue watching, local progress persistence, demo profile | Realistic repeat-viewing journey |
 | **05 — Operations & Polish** | `/admin`; local demo catalogue editing, publication state, responsive QA, accessibility, smoke tests, CI and client presentation guidance | Complete six-page pitch prototype |
 
@@ -49,7 +49,7 @@ npm test
 - Copied/adapted component concepts from **xalonious/streaming-app**, copyright © 2026 xalonious, under MIT license. Full required copyright and license notice: [docs/OPEN_SOURCE.md](docs/OPEN_SOURCE.md).
 - Icons from **lucide-react** (ISC license). Next.js/React/Tailwind licensed independently by their maintainers.
 - All illustrations under `public/artwork` were generated for this prototype. Other repositories are references, **not copied assets**.
-- Do not add commercial posters, video streams, or metadata without appropriate permissions. Official YouTube embeds, if used in Phase 3, must preserve YouTube's required player controls and terms.
+- Do not add commercial posters, video streams, or metadata without appropriate permissions. Do not add unauthorized commercial movie streams or copy other providers' branded player interfaces.
 - Keep admin controls private in Phase 5; avoid deploying a writable unauthenticated admin interface.
 
 ## Branch strategy
@@ -77,7 +77,7 @@ Includes `/admin` demo CMS, browse/search/edit, feature/unfeature, draft/publish
 
 1. Browse `/`, open a fictional film or series.
 2. Search/filter `/explore`, inspect a title at `/title/[slug]`.
-3. Open `/watch/[id]`, test native playback/YouTube demo, navigate episodes.
+3. Open `/watch/[id]`, test Video.js native open-film/sample playback, navigate episodes.
 4. Add a title to My List; use `/my-space` to resume sample playback.
 5. Visit `/admin`, edit and publish fictional titles; verify local viewer changes.
 
@@ -85,10 +85,18 @@ Includes `/admin` demo CMS, browse/search/edit, feature/unfeature, draft/publish
 
 ## Open Cinema (premium demo polish)
 
-The homepage includes real Blender open films, credited Creative Commons poster URLs and selected official YouTube embedded films. Fictional titles/series remain for demo workflows. For each open film, see its source and license on the detail page. Full image/video inventory: [docs/OPEN_FILM_ASSETS.md](docs/OPEN_FILM_ASSETS.md). A network connection is required to load remote posters and YouTube frames.
+The homepage includes real Blender open films, credited Creative Commons poster URLs and two native MP4 open-film streams. Fictional titles/series remain for demo workflows. For each open film, see its source and license on the detail page. Full image/video inventory: [docs/OPEN_FILM_ASSETS.md](docs/OPEN_FILM_ASSETS.md). A network connection is required to load remote posters and licensed MP4 streams.
 
-This viewer-side catalogue polish is intentionally independent of the CMS implementation workstream. Existing browser-local CMS behavior remains unchanged. Remote image and embedded YouTube availability depend on third-party services and must be verified on the presentation network.
+This viewer-side catalogue polish is intentionally independent of the CMS implementation workstream. Existing browser-local CMS behavior remains unchanged. Remote image and MP4 availability depend on third-party services and must be verified on the presentation network.
 
-## Premium design system and imagery
+## Design system & visual assets
 
-The canonical dark, neutral-champagne OTT design is [DESIGN.md](DESIGN.md). Real Blender film credits are in [Open film assets](docs/OPEN_FILM_ASSETS.md); the 12 photographic **fictional** concepts with source links are listed in [Concept photography](docs/CONCEPT_PHOTOGRAPHY.md). Do not add purple gradients or abstract SVG pseudo-posters. CMS contributors should branch from `main` and avoid changing catalogue components concurrently.
+The canonical premium design system is [DESIGN.md](DESIGN.md). Do not add purple gradients or abstract SVG film posters. Real open films and their license information are recorded in [Open film assets](docs/OPEN_FILM_ASSETS.md); the 12 photo-led fictional concept titles and source links are recorded in [Concept photography](docs/CONCEPT_PHOTOGRAPHY.md). CMS contributors should implement from `main` on their own branches, keeping application state logic separate from this UI styling.
+
+## Editorial V2 — Premium OTT UI and native player
+
+The [canonical DESIGN.md](DESIGN.md) now defines a media-first, compact OTT layout with neutral dark backgrounds, no purple gradients, and content-dense movie/TV rails. Homepage shelves include Trending Movies, Trending TV, Hindi Movies & Series, Animation & Family, and Open Cinema. Links to Netflix, Prime Video, Disney+, JioHotstar and Tata Play Binge are **external provider references only**; no commercial provider content is streamed here.
+
+The player uses `@videojs/react` 10.1.0 with `NeutralVideoSkin` around native MP4 playback, not a YouTube iframe. Big Buck Bunny and Elephants Dream have matching open-film examples; all other routes clearly indicate they play unrelated demonstration footage. Full media and design sources: [OTT_UI_REFERENCES.md](docs/OTT_UI_REFERENCES.md) and [PHASE_03_REVIEW.md](docs/PHASE_03_REVIEW.md).
+
+For review run `npm install`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm test`, and manual browser checks. Full build and streaming availability have not yet been verified in the authoring environment. The CMS remains a browser-local demo; coordinate real CMS changes with its feature owner.

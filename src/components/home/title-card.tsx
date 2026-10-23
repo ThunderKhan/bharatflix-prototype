@@ -5,7 +5,7 @@
 // License and upstream link: docs/OPEN_SOURCE.md.
 
 import Image from "next/image";
-import { ArrowUpRight, Play, Star } from "lucide-react";
+import { ArrowUpRight, Play } from "lucide-react";
 import type { MediaTitle } from "@/types/media";
 
 interface Props {
@@ -27,7 +27,7 @@ export function TitleCard({ title, onSelect, rank, priority = false }: Props) {
       </div>
       <div className="title-card-description">
         <span className="title-card-name">{title.title}</span>
-        <span className="title-card-meta">{title.mediaOrigin === "open-film" ? "OPEN FILM" : <><Star size={12} fill="currentColor" /> {title.rating.toFixed(1)}</>} <span aria-hidden="true">·</span> {title.year} <span aria-hidden="true">·</span> {title.kind === "movie" ? "Film" : "Series"}</span>
+        <span className="title-card-meta">{title.mediaOrigin === "open-film" ? "OPEN FILM" : "CONCEPT"} <span aria-hidden="true">·</span> {title.year} <span aria-hidden="true">·</span> {title.kind === "movie" ? "Film" : "Series"}</span>
       </div>
     </button>
   );
