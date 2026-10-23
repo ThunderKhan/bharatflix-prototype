@@ -14,6 +14,7 @@ const links = [
   { label: "Series", href: "/explore?kind=series" },
   { label: "Collections", href: "/#collections" },
   { label: "My Space", href: "/my-space" },
+  { label: "Studio", href: "/admin" },
 ];
 
 export function SiteHeader({ onOpenSearch }: Props) {

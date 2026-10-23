@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { TitleDetail } from "@/components/details/title-detail";
-import { getCastForTitle, getSeasonsForTitle, getTitleBySlug, titles } from "@/lib/catalog";
-import { findRelatedTitles } from "@/lib/discovery";
+import { TitleRouteClient } from "@/components/details/title-route-client";
+import { getTitleBySlug, titles } from "@/lib/catalog";
 
 export function generateStaticParams() {
   return titles.map((title) => ({ slug: title.slug }));
@@ -16,7 +14,5 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function TitlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const title = getTitleBySlug(slug);
-  if (!title) notFound();
-  return <TitleDetail title={title} seasons={getSeasonsForTitle(slug)} cast={getCastForTitle(slug)} related={findRelatedTitles(titles,title)}/>;
+  return <TitleRouteClient slug={slug}/>;
 }

@@ -4,23 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Film, Search, SlidersHorizontal, Sparkles, X } from "lucide-react";
 import { useMemo, useState } from "react";
-import { titles } from "@/lib/catalog";
+import { useDemoCMS } from "@/lib/demo-cms";
 import { filterCatalogue, getFilterOptions, type CatalogueSort } from "@/lib/discovery";
 import type { MediaKind } from "@/types/media";
 import { DiscoveryShell } from "./discovery-shell";
 
-const options = getFilterOptions(titles);
 const sortChoices: { id: CatalogueSort; label: string }[] = [
   { id: "featured", label: "Recommended" }, { id: "newest", label: "Newest first" },
   { id: "oldest", label: "Oldest first" }, { id: "rating", label: "Highest rated" },
   { id: "title", label: "A to Z" },
 ];
 
-export function ExploreExperience({ initialKind = "all" }: { initialKind?: MediaKind | "all" }) {
+export function ExploreExperience({ initialKind = "all", initialLanguage = "all" }: { initialKind?: MediaKind | "all"; initialLanguage?: string }) {
+  const { published: titles } = useDemoCMS();
+  const options = useMemo(() => getFilterOptions(titles), [titles]);
   const [query, setQuery] = useState("");
   const [kind, setKind] = useState<MediaKind | "all">(initialKind);
   const [genre, setGenre] = useState("all");
-  const [language, setLanguage] = useState("all");
+  const [language, setLanguage] = useState(initialLanguage);
   const [year, setYear] = useState("all");
   const [sort, setSort] = useState<CatalogueSort>("featured");
   const filtered = useMemo(() => filterCatalogue(titles, { search: query, kind, genre, language, year, sort }), [query, kind, genre, language, year, sort]);

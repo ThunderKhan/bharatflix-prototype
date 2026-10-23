@@ -69,6 +69,16 @@ The Phase 02 branch adds:
 Validation: `npm run lint && npm run typecheck && npm run build && npm test`.
 See `docs/PHASE_02_REVIEW.md` for test scenarios and prototype constraints.
 
-## Phase 04 — My Space
+## Phase 05 — Operator Studio (prototype)
 
-Includes `/my-space` with My List, Continue Watching, and local profile reset, plus favorite controls on detail pages. Native HTML5 progress persists *only in the same browser*; YouTube playback is not tracked. See [docs/PHASE_04_REVIEW.md](docs/PHASE_04_REVIEW.md).
+Includes `/admin` demo CMS, browse/search/edit, feature/unfeature, draft/publish, new fictional draft, and restore. The viewer homepage, Explore, search and detail pages reflect changes within the **same browser only**. Added India-language discovery links and Prime-style content density. `/admin` is unauthenticated and must never be used as a production CMS. See [docs/PHASE_05_REVIEW.md](docs/PHASE_05_REVIEW.md).
+
+### Client walkthrough
+
+1. Browse `/`, open a fictional film or series.
+2. Search/filter `/explore`, inspect a title at `/title/[slug]`.
+3. Open `/watch/[id]`, test native playback/YouTube demo, navigate episodes.
+4. Add a title to My List; use `/my-space` to resume sample playback.
+5. Visit `/admin`, edit and publish fictional titles; verify local viewer changes.
+
+**Not included:** actual accounts, paid subscriptions, secure admin, transcoding, content-rights verification, real movie hosting, or shared persistence. Video/credit sources and licensing are documented in Phase 3.

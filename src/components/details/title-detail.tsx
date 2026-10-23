@@ -8,6 +8,7 @@ import type { MediaTitle, Season, Episode } from "@/types/media";
 import { getFirstWatchId } from "@/lib/demo-media";
 import { toggleWatchlist, useDemoLibrary } from "@/lib/demo-library";
 import { BookmarkPlus, BookmarkCheck } from "lucide-react";
+import { isSamplePlayable } from "@/lib/demo-cms";
 import { DiscoveryShell } from "@/components/discovery/discovery-shell";
 
 interface Props {
@@ -39,7 +40,7 @@ export function TitleDetail({ title, seasons, cast, related }: Props) {
             <p className="detail-tagline">{title.tagline}</p>
             <div className="detail-stats"><span className="detail-rating"><Star size={16} fill="currentColor"/> {title.rating.toFixed(1)}</span><span>{title.year}</span><span>{title.runtime}</span><span className="detail-maturity">{title.maturity}</span></div>
             <p className="detail-synopsis">{title.synopsis}</p>
-            <div className="detail-actions"><Link className="button-primary" href={`/watch/${getFirstWatchId(title)}`}><Play size={18}/> Watch sample clip</Link><button className="detail-secondary-action" type="button" aria-pressed={saved} onClick={() => toggleWatchlist(title.slug)}>{saved ? <BookmarkCheck size={18}/> : <BookmarkPlus size={18}/>} {saved ? "In My List" : "Add to My List"}</button><Link className="detail-secondary-action" href="/explore"><Film size={18}/> Explore <ArrowRight size={16}/></Link></div>
+            <div className="detail-actions">{isSamplePlayable(title.slug) ? <Link className="button-primary" href={`/watch/${getFirstWatchId(title)}`}><Play size={18}/> Watch sample clip</Link> : <span className="detail-unavailable"><Play size={18}/> Media not connected</span>}<button className="detail-secondary-action" type="button" aria-pressed={saved} onClick={() => toggleWatchlist(title.slug)}>{saved ? <BookmarkCheck size={18}/> : <BookmarkPlus size={18}/>} {saved ? "In My List" : "Add to My List"}</button><Link className="detail-secondary-action" href="/explore"><Film size={18}/> Explore <ArrowRight size={16}/></Link></div>
             <div className="detail-hero-footnote"><ShieldCheck size={15}/> Concept title. No movie or episode video is hosted or streamed.</div>
           </div>
           <div className="detail-poster-frame"><Image src={title.poster} alt={`Original fictional poster for ${title.title}`} fill priority sizes="(max-width: 800px) 180px, 320px"/><span className="detail-poster-gloss"/></div>
