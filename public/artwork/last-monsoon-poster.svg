@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="690" viewBox="0 0 480 690">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3045"/><stop offset=".56" stop-color="#080c1b"/><stop offset="1" stop-color="#0a3045"/></linearGradient>
+<radialGradient id="shine"><stop offset="0" stop-color="#43d7b5" stop-opacity=".9"/><stop offset=".6" stop-color="#43d7b5" stop-opacity=".32"/><stop offset="1" stop-color="#43d7b5" stop-opacity="0"/></radialGradient>
+<linearGradient id="mountain" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#43d7b5" stop-opacity=".65"/><stop offset="1" stop-color="#0a3045" stop-opacity=".6"/></linearGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="30"/></filter></defs>
+<rect width="100%" height="100%" fill="url(#bg)"/>
+<circle cx="259.20000000000005" cy="296.7" r="260.064" fill="url(#shine)" opacity=".9" filter="url(#blur)"/>
+<circle cx="259.20000000000005" cy="296.7" r="206.4" fill="none" stroke="#fbc07b" stroke-width="2" opacity=".8"/>
+<circle cx="259.20000000000005" cy="296.7" r="160.99200000000002" fill="#0a3045" opacity=".6"/>
+<circle cx="259.20000000000005" cy="296.7" r="101.136" fill="url(#shine)"/>
+<path d="M0 511 C110 352,182 635,288 483 S437 338,480 476 L480 690 L0 690Z" fill="url(#mountain)" opacity=".6"/>
+<path d="M0 607 Q 192 380 480 593 L480 690L0 690Z" fill="#080d19" opacity=".76"/>
+<circle cx="84" cy="428" r="5" fill="#fbc07b" opacity="0.40"/><circle cx="245" cy="221" r="5" fill="#fbc07b" opacity="0.47"/><circle cx="262" cy="187" r="6" fill="#fbc07b" opacity="0.36"/><circle cx="403" cy="3" r="2" fill="#fbc07b" opacity="0.30"/><circle cx="299" cy="438" r="2" fill="#fbc07b" opacity="0.21"/><circle cx="384" cy="237" r="3" fill="#fbc07b" opacity="0.43"/><circle cx="223" cy="416" r="6" fill="#fbc07b" opacity="0.33"/><circle cx="168" cy="509" r="2" fill="#fbc07b" opacity="0.41"/><circle cx="188" cy="23" r="3" fill="#fbc07b" opacity="0.45"/><path d="M45 127 l-85 122" stroke="#43d7b5" stroke-width="1" opacity="0.18"/><path d="M82 565 l12 138" stroke="#43d7b5" stroke-width="1" opacity="0.16"/><path d="M77 191 l30 10" stroke="#43d7b5" stroke-width="1" opacity="0.16"/><path d="M38 202 l115 -74" stroke="#43d7b5" stroke-width="1" opacity="0.10"/><path d="M62 573 l9 -8" stroke="#43d7b5" stroke-width="1" opacity="0.13"/><path d="M174 149 l14 39" stroke="#43d7b5" stroke-width="1" opacity="0.19"/><path d="M186 462 l-9 138" stroke="#43d7b5" stroke-width="1" opacity="0.14"/>
+<path d="M-9 359 L528 359" stroke="#fbc07b" stroke-width="2" opacity=".4"/>
+
+<text x="30" y="545" font-family="Arial,sans-serif" font-size="42" font-weight="800" letter-spacing="-2" fill="white"><tspan x="30" dy="0">THE LAST</tspan><tspan x="30" dy="58">MONSOON</tspan></text><text x="32" y="650" font-family="Arial,sans-serif" font-size="14" letter-spacing="5" fill="#fbc07b" opacity=".85">BHARATFLIX ORIGINAL CONCEPT</text>
+</svg>

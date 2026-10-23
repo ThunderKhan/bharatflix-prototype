@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="690" viewBox="0 0 480 690">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#502929"/><stop offset=".56" stop-color="#080c1b"/><stop offset="1" stop-color="#502929"/></linearGradient>
+<radialGradient id="shine"><stop offset="0" stop-color="#ffb25b" stop-opacity=".9"/><stop offset=".6" stop-color="#ffb25b" stop-opacity=".32"/><stop offset="1" stop-color="#ffb25b" stop-opacity="0"/></radialGradient>
+<linearGradient id="mountain" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffb25b" stop-opacity=".65"/><stop offset="1" stop-color="#502929" stop-opacity=".6"/></linearGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="30"/></filter></defs>
+<rect width="100%" height="100%" fill="url(#bg)"/>
+<circle cx="259.20000000000005" cy="296.7" r="260.064" fill="url(#shine)" opacity=".9" filter="url(#blur)"/>
+<circle cx="259.20000000000005" cy="296.7" r="206.4" fill="none" stroke="#ffe4a4" stroke-width="2" opacity=".8"/>
+<circle cx="259.20000000000005" cy="296.7" r="160.99200000000002" fill="#502929" opacity=".6"/>
+<circle cx="259.20000000000005" cy="296.7" r="101.136" fill="url(#shine)"/>
+<path d="M0 511 C110 352,182 635,288 483 S437 338,480 476 L480 690 L0 690Z" fill="url(#mountain)" opacity=".6"/>
+<path d="M0 607 Q 192 380 480 593 L480 690L0 690Z" fill="#080d19" opacity=".76"/>
+<circle cx="39" cy="218" r="3" fill="#ffe4a4" opacity="0.27"/><circle cx="460" cy="243" r="5" fill="#ffe4a4" opacity="0.16"/><circle cx="19" cy="102" r="4" fill="#ffe4a4" opacity="0.35"/><circle cx="431" cy="58" r="6" fill="#ffe4a4" opacity="0.43"/><circle cx="451" cy="480" r="4" fill="#ffe4a4" opacity="0.39"/><circle cx="277" cy="129" r="6" fill="#ffe4a4" opacity="0.15"/><circle cx="374" cy="207" r="4" fill="#ffe4a4" opacity="0.53"/><circle cx="103" cy="456" r="2" fill="#ffe4a4" opacity="0.28"/><circle cx="18" cy="114" r="3" fill="#ffe4a4" opacity="0.33"/><path d="M220 50 l52 70" stroke="#ffb25b" stroke-width="1" opacity="0.19"/><path d="M116 167 l96 142" stroke="#ffb25b" stroke-width="1" opacity="0.13"/><path d="M85 547 l99 43" stroke="#ffb25b" stroke-width="1" opacity="0.18"/><path d="M291 589 l107 -94" stroke="#ffb25b" stroke-width="1" opacity="0.14"/><path d="M300 297 l-6 -70" stroke="#ffb25b" stroke-width="1" opacity="0.10"/><path d="M124 678 l-16 108" stroke="#ffb25b" stroke-width="1" opacity="0.12"/><path d="M356 71 l-88 -18" stroke="#ffb25b" stroke-width="1" opacity="0.17"/>
+<path d="M-9 359 L528 359" stroke="#ffe4a4" stroke-width="2" opacity=".4"/>
+
+<text x="30" y="545" font-family="Arial,sans-serif" font-size="52" font-weight="800" letter-spacing="-2" fill="white"><tspan x="30" dy="0">SAFFRON SKY</tspan></text><text x="32" y="650" font-family="Arial,sans-serif" font-size="14" letter-spacing="5" fill="#ffe4a4" opacity=".85">BHARATFLIX ORIGINAL CONCEPT</text>
+</svg>
