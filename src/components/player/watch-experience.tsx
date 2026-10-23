@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, AlertCircle, Film, Info, ShieldCheck } from "lucide-react";
 import { Video, VideoPlayer, NeutralVideoSkin } from "@videojs/react/video";
 import "@videojs/react/video/neutral-skin.css";
-import { saveViewingProgress, useDemoLibrary } from "@/lib/demo-library";
+import { saveViewerProgress, useViewerLibrary } from "@/lib/viewer-library";
 import { resolvePlaybackSource, type WatchTarget } from "@/lib/demo-media";
 
 /** Video.js 10 native media engine + accessible neutral control skin. No YouTube iframe. */
@@ -15,7 +15,7 @@ export function WatchExperience({ target }: { target: WatchTarget }) {
   const lastSave = useRef(0);
   const [failed, setFailed] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
-  const library = useDemoLibrary();
+  const {library,account} = useViewerLibrary();
   const saved = library.history.find((entry) => entry.id === target.id);
   const source = resolvePlaybackSource(target);
   const heading = target.episode?.title ?? target.title.title;
@@ -25,7 +25,7 @@ export function WatchExperience({ target }: { target: WatchTarget }) {
     const now = Date.now();
     if (!force && now - lastSave.current < 3500) return;
     lastSave.current = now;
-    saveViewingProgress(target.id, video.currentTime, video.duration);
+    saveViewerProgress(target.id, video.currentTime, video.duration);
   }
 
   return <main className="watch-screen watch-screen-cinema">
@@ -58,7 +58,7 @@ export function WatchExperience({ target }: { target: WatchTarget }) {
             </NeutralVideoSkin>
           </VideoPlayer>}
       </div>
-      <div className="watch-under-player"><span><ShieldCheck size={15} aria-hidden="true"/>{source.fullFilm ? "Licensed open film" : "Sample footage · not the selected title"}</span><span>Playback progress saved to this browser</span></div>
+      <div className="watch-under-player"><span><ShieldCheck size={15} aria-hidden="true"/>{source.fullFilm ? "Licensed open film" : "Sample footage · not the selected title"}</span><span>{account ? "Progress saved to your account" : "Sign in to save progress across sessions"}</span></div>
     </section>
 
     <section className="watch-content-below" aria-label="Viewing information">

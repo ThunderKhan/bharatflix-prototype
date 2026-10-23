@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useDemoCMS } from "@/lib/demo-cms";
-import { useDemoLibrary } from "@/lib/demo-library";
+import { useViewerLibrary } from "@/lib/viewer-library";
 import { getWatchTarget } from "@/lib/demo-media";
 import type { MediaTitle } from "@/types/media";
 import { FeaturedHero } from "./featured-hero";
@@ -16,7 +16,7 @@ import { TitleRow } from "./title-row";
 
 export function HomeExperience() {
   const { published: catalogue } = useDemoCMS();
-  const library = useDemoLibrary();
+  const { library } = useViewerLibrary();
   const continueTitles = library.history.map((entry) => getWatchTarget(entry.id)?.title).filter((item): item is MediaTitle => Boolean(item)).filter((item, index, array) => array.findIndex((other) => other.slug === item.slug) === index);
   const [searchOpen, setSearchOpen] = useState(false);
   const [selected, setSelected] = useState<MediaTitle | null>(null);

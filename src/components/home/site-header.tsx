@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Clapperboard, Menu, Search, UserRound, X } from "lucide-react";
+import { Clapperboard, Menu, Search, X } from "lucide-react";
 import { useState } from "react";
+import { AccountMenu } from "@/components/account/account-menu";
 
 interface Props { onOpenSearch: () => void; }
 
@@ -28,7 +29,7 @@ export function SiteHeader({ onOpenSearch }: Props) {
       <div className="header-actions">
 
         <button className="header-icon-button" type="button" aria-label="Search titles" onClick={onOpenSearch}><Search size={21}/></button>
-        <Link className="header-avatar" href="/my-space" aria-label="Open My Space" title="My Space"><UserRound size={19}/></Link>
+        <AccountMenu/>
         <button className="header-icon-button mobile-menu-toggle" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={22}/> : <Menu size={22}/>}</button>
       </div>
     </div>

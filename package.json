@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "bootstrap:superadmin": "node scripts/bootstrap-superadmin.mjs"
   },
   "dependencies": {
     "@videojs/react": "10.1.0",

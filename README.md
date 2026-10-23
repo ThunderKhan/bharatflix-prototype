@@ -100,3 +100,9 @@ The [canonical DESIGN.md](DESIGN.md) now defines a media-first, compact OTT layo
 The player uses `@videojs/react` 10.1.0 with `NeutralVideoSkin` around native MP4 playback, not a YouTube iframe. Big Buck Bunny and Elephants Dream have matching open-film examples; all other routes clearly indicate they play unrelated demonstration footage. Full media and design sources: [OTT_UI_REFERENCES.md](docs/OTT_UI_REFERENCES.md) and [PHASE_03_REVIEW.md](docs/PHASE_03_REVIEW.md).
 
 For review run `npm install`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm test`, and manual browser checks. Full build and streaming availability have not yet been verified in the authoring environment. The CMS remains a browser-local demo; coordinate real CMS changes with its feature owner.
+
+## Authenticated viewer and staff demo
+
+A local SQLite-backed account layer now supports viewer signup and login, account-linked watchlists and playback progress, and staff roles: **viewer**, **admin**, **superadmin**. `/account` is the login/signup page; `/my-space` requires any account, `/admin` requires admin or superadmin, and `/admin/users` requires superadmin. There are no shared demo credentials.
+
+See **[docs/AUTH_AND_ROLES.md](docs/AUTH_AND_ROLES.md)** for bootstrapping the first superadmin, security decisions, deployment limitations and colleague CMS integration guidance. Existing operator-studio content editing is still a browser-local prototype rather than a shared database CMS.

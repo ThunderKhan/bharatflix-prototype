@@ -9,3 +9,9 @@
 .DS_Store
 *.log
 coverage/
+
+# Persistent local demo database; never commit account data
+.local-data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
