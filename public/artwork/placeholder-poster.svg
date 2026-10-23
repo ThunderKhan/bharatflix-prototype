@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="750" viewBox="0 0 500 750" role="img" aria-label="Placeholder poster">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#171b2b"/>
+      <stop offset="1" stop-color="#0b0d15"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6b7a"/>
+      <stop offset="1" stop-color="#da4359"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="750" fill="url(#bg)"/>
+  <circle cx="250" cy="300" r="118" fill="none" stroke="url(#accent)" stroke-width="10" opacity="0.9"/>
+  <path d="M218 246 L318 300 L218 354 Z" fill="url(#accent)"/>
+  <text x="250" y="500" text-anchor="middle" fill="#f6f5f7" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800" letter-spacing="-1">BharatFlix</text>
+  <text x="250" y="540" text-anchor="middle" fill="#8b92a6" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="4">NO ARTWORK YET</text>
+</svg>
