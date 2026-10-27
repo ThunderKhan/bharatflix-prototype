@@ -14,6 +14,7 @@ const links = [
   { label: "Movies", href: "/explore?kind=movie" },
   { label: "TV Shows", href: "/explore?kind=series" },
   { label: "Open Cinema", href: "/#open-cinema" },
+  { label: "Pricing", href: "/pricing" },
   { label: "My Space", href: "/my-space" },
 
 ];
@@ -21,7 +22,7 @@ const links = [
 export function SiteHeader({ onOpenSearch }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const active = (href: string) => href === "/" ? pathname === "/" : href === "/explore" && pathname === "/explore";
+  const active = (href: string) => href === "/" ? pathname === "/" : href === "/pricing" ? pathname === "/pricing" : href === "/explore" && pathname === "/explore";
   return <header className="site-header">
     <div className="header-inner">
       <Link href="/" className="brand-logo" aria-label="BharatFlix home"><span className="brand-icon"><Clapperboard size={22}/></span><span>bharat<span>flix</span></span><span className="brand-dot">.</span></Link>
