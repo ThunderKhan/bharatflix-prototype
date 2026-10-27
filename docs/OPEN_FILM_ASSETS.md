@@ -15,9 +15,15 @@ The source list below records each real image page and license. Avoid copying co
 | Coffee Run | 2020 | [Original poster](https://commons.wikimedia.org/wiki/File:Coffee_Run-movie_poster.png) · Hjalti Hjalmarsson (Blender Studio) | [CC BY](https://creativecommons.org/licenses/by/4.0/) | [Blender Studio](https://studio.blender.org/films/coffee-run/) | [Official release](https://www.youtube.com/watch?v=PVGeM40dABA) |
 
 
-## About player thumbnail imagery
+## Native player sources and labels
 
-For entries with a linked official Blender YouTube ID, the wide background is the corresponding `i.ytimg.com` thumbnail. The embedded video uses `youtube-nocookie.com` and leaves the YouTube interface intact; the platform does not proxy or download videos. If embedding is disabled upstream, the fallback is the licensed MDN sample clip.
+The homepage backdrop for open films with a linked official YouTube ID uses the corresponding attributed `i.ytimg.com` image. **Playback does not embed YouTube**: the site uses native HTML5 video via Video.js.
+
+- **Big Buck Bunny** and **Elephants Dream** use matching complete-film MP4 demonstration sources and are labelled "Watch full film".
+- **Sintel** uses its [official Blender-hosted 480p trailer](https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4), licensed CC BY 3.0 by the Blender Foundation; it is explicitly labelled as a **trailer**, not a complete film.
+- All other catalogue entries use an openly licensed **MDN flower footage sample** to demonstrate the player controls. These are explicitly labelled as technical player samples and are never presented as the selected title.
+
+The viewer sees source attribution below the player. External media URLs may become unavailable; test connectivity before a presentation.
 
 ## Limitations
 

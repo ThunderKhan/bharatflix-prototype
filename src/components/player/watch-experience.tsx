@@ -53,12 +53,12 @@ export function WatchExperience({ target }: { target: WatchTarget }) {
                 onPause={(event) => save(event.currentTarget, true)}
                 onEnded={(event) => save(event.currentTarget, true)}
                 onError={() => setFailed(true)}
-                aria-label={`${source.fullFilm ? "Open film" : "Demo preview"}: ${heading}`}
+                aria-label={`${source.kind === "full-film" ? "Open film" : source.kind === "official-trailer" ? "Official trailer" : "Demo preview"}: ${heading}`}
               />
             </NeutralVideoSkin>
           </VideoPlayer>}
       </div>
-      <div className="watch-under-player"><span><ShieldCheck size={15} aria-hidden="true"/>{source.fullFilm ? "Licensed open film" : "Sample footage · not the selected title"}</span><span>{account ? "Progress saved to your account" : "Sign in to save progress across sessions"}</span></div>
+      <div className="watch-under-player"><span><ShieldCheck size={15} aria-hidden="true"/>{source.kind === "full-film" ? "Licensed open film" : source.kind === "official-trailer" ? "Official film trailer · Blender Foundation" : "Sample footage · not the selected title"}</span><span>{account ? "Progress saved to your account" : "Sign in to save progress across sessions"}</span></div>
     </section>
 
     <section className="watch-content-below" aria-label="Viewing information">

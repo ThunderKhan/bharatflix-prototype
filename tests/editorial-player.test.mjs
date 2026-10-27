@@ -34,3 +34,18 @@ test("new design spec and licensing decisions are documented",()=>{
  const reference=text("docs/OTT_UI_REFERENCES.md");
  assert.match(reference,/No commercial movie posters/);
 });
+
+test("featured open-film trailer is matched to its title and sample footage is labelled honestly", () => {
+ const sources=text("src/lib/demo-media.ts");
+ const hero=text("src/components/home/featured-hero.tsx");
+ const detail=text("src/components/details/title-detail.tsx");
+ const player=text("src/components/player/watch-experience.tsx");
+ assert.match(sources,/download\.blender\.org\/durian\/trailer\/sintel_trailer-480p\.mp4/);
+ assert.match(sources,/kind: "official-trailer"/);
+ assert.match(sources,/getPlaybackButtonLabel/);
+ assert.match(hero,/active\.badge !== kicker/);
+ assert.match(hero,/getPlaybackButtonLabel\(active\)/);
+ assert.match(detail,/getPlaybackButtonLabel\(title\)/);
+ assert.match(player,/Official film trailer/);
+ assert.match(player,/source\.kind === "official-trailer"/);
+});
