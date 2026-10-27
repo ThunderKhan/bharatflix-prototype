@@ -135,7 +135,7 @@ export function Pricing({
                   {isMonthly ? "Billed monthly" : "Billed annually at " + rupees(annualTotal)}
                 </p>
                 <div className={styles.cardRule} />
-                <p className={styles.includes}>WHAT'S INCLUDED</p>
+                <p className={styles.includes}>WHAT&apos;S INCLUDED</p>
                 <ul className={styles.features}>
                   {plan.features.map((feature) => (
                     <li key={feature}><Check size={16} strokeWidth={2.5} aria-hidden="true" /><span>{feature}</span></li>
