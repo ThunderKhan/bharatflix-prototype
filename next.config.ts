@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
     { protocol: "https", hostname: "i.ytimg.com" },
     { protocol: "https", hostname: "images.unsplash.com" },
   ] },
+  // SQLite studio demo seeds from these local fixtures at runtime in Vercel functions.
+  outputFileTracingIncludes: {
+    "/*": ["./src/data/*.json", "./src/lib/db/schema.sql"],
+  },
 };
 
 export default nextConfig;

@@ -1,5 +1,5 @@
 import { getDb } from "@/lib/db/connection";
-import { requireOperator } from "@/lib/admin/auth";
+import { requireSuperadmin } from "@/lib/admin/auth";
 import { saveSettings } from "@/lib/admin/actions";
 import { Notice } from "@/components/admin/notice";
 
@@ -11,7 +11,7 @@ function readSetting(key: string, fallback: string): string {
 }
 
 export default async function StudioSettingsPage({ searchParams }: { searchParams: Promise<{ saved?: string; error?: string }> }) {
-  await requireOperator();
+  await requireSuperadmin();
   const { saved, error } = await searchParams;
   const siteName = readSetting("site_name", "BharatFlix");
   const tagline = readSetting("tagline", "Stories worth staying for.");

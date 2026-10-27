@@ -17,13 +17,14 @@ const globalForDb = globalThis as unknown as { __bharatflixDb?: Database.Databas
 export function resolveDbFile(): string {
   const override = process.env.BHARATFLIX_DB_FILE;
   if (override) return override;
+  if (process.env.VERCEL === "1" || process.env.BHARATFLIX_DEMO_AUTH === "1") return ":memory:";
   return path.join(process.cwd(), ".local-data", "bharatflix-cms.sqlite");
 }
 
 export function openDb(file = resolveDbFile()): Database.Database {
-  fs.mkdirSync(path.dirname(file), { recursive: true });
+  if (file !== ":memory:") fs.mkdirSync(path.dirname(file), { recursive: true });
   const db = new Database(file);
-  db.pragma("journal_mode = WAL");
+  if (file !== ":memory:") db.pragma("journal_mode = WAL");
   db.pragma("foreign_keys = ON");
   const schema = fs.readFileSync(path.join(process.cwd(), "src", "lib", "db", "schema.sql"), "utf8");
   db.exec(schema);

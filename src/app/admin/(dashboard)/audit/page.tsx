@@ -1,10 +1,10 @@
-import { requireOperator } from "@/lib/admin/auth";
+import { requireSuperadmin } from "@/lib/admin/auth";
 import { listAudit } from "@/lib/admin/queries";
 
 export const dynamic = "force-dynamic";
 
 export default async function StudioAuditPage() {
-  await requireOperator();
+  await requireSuperadmin();
   const entries = listAudit(200);
   return (
     <>

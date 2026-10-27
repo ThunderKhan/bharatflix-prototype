@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { actionBody, actionGuard, noStoreHeaders, sendFailure } from "@/lib/account-http";
 import { accountDb } from "@/lib/account-db";
+import { isDemoMode } from "@/lib/demo-auth";
 import { currentAccount, AccountError } from "@/lib/account-service";
 import { getTitleBySlug } from "@/lib/catalog";
 import { getWatchTarget } from "@/lib/demo-media";
@@ -14,12 +15,14 @@ function accountLibrary(userId:string){
 export async function GET(){
   const user=await currentAccount();
   if(!user)return NextResponse.json({error:"Sign in first."},{status:401,headers:noStoreHeaders});
+  if(isDemoMode())return NextResponse.json({library:{watchlist:[],history:[]},demo:true},{headers:noStoreHeaders});
   return NextResponse.json({library:accountLibrary(user.id)},{headers:noStoreHeaders});
 }
 export async function POST(request:NextRequest){
   const forbidden=actionGuard(request);if(forbidden)return forbidden;
   try{
     const user=await currentAccount();if(!user)throw new AccountError(401,"Sign in first.");
+    if(isDemoMode())throw new AccountError(409,"Demo watchlists and playback progress are saved in your browser.");
     const input=await actionBody(request);
     const db=accountDb();
     if(input.action==="toggle"){

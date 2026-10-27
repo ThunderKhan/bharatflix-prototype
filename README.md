@@ -106,3 +106,14 @@ For review run `npm install`, `npm run lint`, `npm run typecheck`, `npm run buil
 A local SQLite-backed account layer now supports viewer signup and login, account-linked watchlists and playback progress, and staff roles: **viewer**, **admin**, **superadmin**. `/account` is the login/signup page; `/my-space` requires any account, `/admin` requires admin or superadmin, and `/admin/users` requires superadmin. There are no shared demo credentials.
 
 See **[docs/AUTH_AND_ROLES.md](docs/AUTH_AND_ROLES.md)** for bootstrapping the first superadmin, security decisions, deployment limitations and colleague CMS integration guidance. Existing operator-studio content editing is still a browser-local prototype rather than a shared database CMS.
+
+
+## Public presentation accounts (Vercel demo)
+
+When deployed on Vercel or with `BHARATFLIX_DEMO_AUTH=1`, the `/account` page shows three copyable demo credentials: Viewer, Admin and Super-admin. Signup and changes to account roles are disabled in this mode. Everyone with the public demo link can use all three roles, so **never connect this build to real customer or production data**.
+
+- Viewer: browse/watch, personal browser-local list and progress; no CMS access.
+- Admin: editorial Operator Studio, title and homepage-row editing.
+- Super-admin: everything the admin sees, plus user overview, settings and activity/audit.
+
+The session cookie is signed server-side. Set `BHARATFLIX_DEMO_SESSION_SECRET` to a random secret of at least 32 characters in Vercel Production and Preview environments; do not commit that value. Vercel demo catalogue staging uses in-memory seeded SQLite and may reset between requests or cold starts; browser-local Operator Studio is the recommended interactive presentation workflow. The existing disk-backed account system is retained when demo mode is not enabled, for local testing.

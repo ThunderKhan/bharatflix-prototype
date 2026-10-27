@@ -36,7 +36,7 @@ const formatDate = (iso: string) => { const t = new Date(iso); return Number.isN
 function percent(part: number, total: number) { return total ? Math.round((part / total) * 100) : 0; }
 function csvCell(value: string | number) { return `"${String(value).replaceAll('"','""')}"`; }
 
-export function AdminExperience() {
+export function AdminExperience({ role }: { role: "admin" | "superadmin" }) {
   const { all, published, cms } = useDemoCMS();
   const ops = useDemoOperations();
   const [section, setSection] = useState<Section>("overview");
@@ -153,7 +153,7 @@ export function AdminExperience() {
       <div className="studio-nav-label">WORKSPACE</div>
       <nav className="studio-nav">{sections.map((item) => <button key={item.id} type="button" aria-current={section === item.id ? "page" : undefined} onClick={() => switchSection(item.id)}><item.icon size={18}/><span>{item.name}</span>{item.id === "catalogue" && <small>{all.length}</small>}</button>)}</nav>
       <div className="studio-nav-label studio-nav-label-bottom">ACCESS & PREVIEW</div>
-      <nav className="studio-nav studio-secondary-nav"><Link href="/admin/users"><UsersRound size={18}/> User management <ExternalLink size={13}/></Link><Link href="/" target="_blank" rel="noopener noreferrer"><Eye size={18}/> View storefront <ExternalLink size={13}/></Link></nav>
+      <nav className="studio-nav studio-secondary-nav">{role === "superadmin" && <Link href="/admin/users"><UsersRound size={18}/> User management <ExternalLink size={13}/></Link>}<Link href="/" target="_blank" rel="noopener noreferrer"><Eye size={18}/> View storefront <ExternalLink size={13}/></Link></nav>
       <div className="studio-side-footer"><span className="studio-live-dot"/><div><strong>Local demo workspace</strong><small>Changes are browser-specific</small></div></div>
     </aside>
     <main className="studio-main">

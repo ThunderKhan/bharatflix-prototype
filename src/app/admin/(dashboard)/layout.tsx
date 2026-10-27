@@ -10,5 +10,5 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 /** Every studio route sits behind this group, so one guard covers the lot. */
 export default async function StudioLayout({ children }: { children: ReactNode }) {
   const operator = await requireOperator();
-  return <StudioShell operatorName={operator.name || operator.email} operatorEmail={operator.email}>{children}</StudioShell>;
+  return <StudioShell operatorName={operator.name || operator.email} operatorEmail={operator.email} operatorRole={operator.role}>{children}</StudioShell>;
 }

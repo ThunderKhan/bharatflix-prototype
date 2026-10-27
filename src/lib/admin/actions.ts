@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getDb } from "@/lib/db/connection";
-import { assertOperator } from "./auth";
+import { assertOperator, assertSuperadmin } from "./auth";
 
 /**
  * Every studio mutation lives here. Rules that apply to all of them:
@@ -341,7 +341,7 @@ export async function toggleRowVisible(formData: FormData): Promise<void> {
 /* ----------------------------------------------------------- settings --- */
 
 export async function saveSettings(formData: FormData): Promise<void> {
-  const operator = await assertOperator();
+  const operator = await assertSuperadmin();
   const siteName = text(formData.get("siteName"), 60) || "BharatFlix";
   const tagline = text(formData.get("tagline"), 120) || "Stories worth staying for.";
   const db = getDb();

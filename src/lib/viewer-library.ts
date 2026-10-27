@@ -5,6 +5,7 @@ import type { PublicAccount } from "@/lib/account-security";
 
 type Identity = PublicAccount | null;
 let signedIn: Identity = null;
+let signedInDemo = false;
 let currentLibrary: DemoLibrary = emptyLibrary;
 const listeners=new Set<()=>void>();
 function inform(){for(const cb of listeners)cb();}
@@ -18,17 +19,20 @@ async function sendAction(body:Record<string,unknown>):Promise<void>{
 export function useViewerLibrary(){
   const local=useDemoLibrary();
   const [account,setAccount]=useState<Identity>(null);
+  const [demo,setDemo]=useState(false);
   const [library,setLibrary]=useState<DemoLibrary>(emptyLibrary);
   useEffect(()=>{
     let cancelled=false;
     async function load(){
       try{
         const response=await fetch("/api/auth/me",{cache:"no-store"});
-        const data=await response.json() as {user:Identity};
+        const data=await response.json() as {user:Identity;demo?:boolean};
         if(cancelled)return;
         signedIn=data.user;
+        signedInDemo=Boolean(data.demo);
+        setDemo(signedInDemo);
         setAccount(data.user);
-        if(data.user){
+        if(data.user && !data.demo){
           const result=await fetch("/api/library",{cache:"no-store"});
           if(!result.ok)return;
           const current=await result.json() as {library:DemoLibrary};
@@ -44,17 +48,17 @@ export function useViewerLibrary(){
     listeners.add(onChange);
     return()=>{cancelled=true;listeners.delete(onChange);};
   },[]);
-  return {library:account?library:local,account};
+  return {library:account && !demo?library:local,account};
 }
 export function toggleViewerWatchlist(slug:string){
-  if(signedIn){void sendAction({action:"toggle",slug}).catch(console.error);}else toggleWatchlist(slug);
+  if(signedIn && !signedInDemo){void sendAction({action:"toggle",slug}).catch(console.error);}else toggleWatchlist(slug);
 }
 export function saveViewerProgress(id:string,seconds:number,duration:number){
-  if(signedIn){void sendAction({action:"progress",id,seconds,duration}).catch(console.error);}else saveViewingProgress(id,seconds,duration);
+  if(signedIn && !signedInDemo){void sendAction({action:"progress",id,seconds,duration}).catch(console.error);}else saveViewingProgress(id,seconds,duration);
 }
 export function removeViewerHistory(id:string){
-  if(signedIn){void sendAction({action:"removeHistory",id}).catch(console.error);}else removeHistory(id);
+  if(signedIn && !signedInDemo){void sendAction({action:"removeHistory",id}).catch(console.error);}else removeHistory(id);
 }
 export function resetViewerLibrary(){
-  if(signedIn){void sendAction({action:"reset"}).catch(console.error);}else resetDemoLibrary();
+  if(signedIn && !signedInDemo){void sendAction({action:"reset"}).catch(console.error);}else resetDemoLibrary();
 }

@@ -1,0 +1,36 @@
+.auth-demo-layout {
+  width: min(100%, 1030px);
+  padding: clamp(22px, 3.5vw, 43px);
+  background: #131a22;
+  border-radius: 9px;
+}
+.auth-demo-layout > h1 { font-size: clamp(30px, 4vw, 46px); }
+.auth-demo-layout > p { max-width: 750px; }
+.demo-account-section { margin: 27px 0 23px; }
+.demo-account-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.demo-account-option {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 19px;
+  border: 1px solid #ffffff24;
+  border-radius: 7px;
+  background: #0b1219;
+}
+.demo-account-option:last-child { border-color: #92b9d38f; }
+.demo-account-title { display: flex; align-items: center; gap: 8px; color: #b2d2e4; font-size: 12px; letter-spacing: 1px; }
+.demo-account-title strong { font-weight: 820; }
+.demo-account-option > p { color: #abb7c3; font-size: 12px; line-height: 1.6; min-height: 60px; margin: 12px 0 17px; }
+.demo-account-credential { margin-bottom: 13px; }
+.demo-account-credential > span { display: block; color: #82919e; font-size: 10px; text-transform: uppercase; font-weight: 750; letter-spacing: 1px; margin-bottom: 6px; }
+.demo-account-credential > div { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.demo-account-credential code { display: block; min-width: 0; flex: 1; color: #e3e8ed; font-size: 11px; overflow-wrap: anywhere; user-select: all; }
+.demo-account-credential button { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border: 1px solid #ffffff25; border-radius: 6px; background: #1e2933; color: #dce8f0; }
+.demo-account-credential button:hover { background: #2c3a46; }
+.demo-use-account { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; margin-top: auto; border: 1px solid #92b9d3; border-radius: 6px; color: #dcecf5; background: #1b303f; font-size: 12px; font-weight: 750; }
+.demo-use-account:hover { background: #2b4658; }
+.demo-account-feedback { min-height: 19px; margin: 13px 0 0; color: #b2d2e4; font-size: 12px; }
+.demo-login-form { width: min(100%, 520px); margin: 10px auto 0; padding-top: 22px; border-top: 1px solid #ffffff24; }
+.auth-demo-layout .auth-note { max-width: 730px; margin: 25px auto 0; text-align: center; }
+@media (max-width: 850px) { .demo-account-grid { grid-template-columns: 1fr; } .demo-account-option > p { min-height: 0; } }
+@media (max-width: 480px) { .auth-demo-layout { padding: 22px 17px; } .demo-account-option { padding: 16px; } }
